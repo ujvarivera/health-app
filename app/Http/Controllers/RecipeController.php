@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class RecipeController extends Controller
 {
@@ -12,7 +13,11 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        //
+        $recipes = Recipe::all();
+        // dd($recipes);
+        return Inertia::render('Recipes/Index', [
+            'recipes' => $recipes
+        ]);
     }
 
     /**
