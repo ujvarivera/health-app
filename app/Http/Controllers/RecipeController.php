@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recipe;
+use App\Models\RecipeImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class RecipeController extends Controller
@@ -25,7 +28,7 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Recipes/Create');
     }
 
     /**
@@ -33,7 +36,38 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd(auth()->user()->id);
+        // dd($request->all());
+        $request->validate([
+            'recipeName' => 'required',
+            'description' => 'required|max:255',
+            'time' => 'required',
+            'difficulty' => 'required|min:0|max:5',
+            'quantity' => 'required',
+            'images' => 'required' // |mimes:jpeg,jpg,png
+        ]);
+
+        $recipe = Recipe::create([
+            'name' => $request->recipeName,
+            'description' => $request->description,
+            'time_in_min' => $request->time,
+            'difficulty' => $request->difficulty,
+            'quantity' => $request->quantity,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        foreach ($request->images as $img) {
+            // $filename = auth()->user()->id + Str::random(10);
+            // $fileName = time() . '.' . $img->getClientOriginalExtension();
+            $storedPath = Storage::disk('local')->put('recipes', $img);
+            //dd($stored);
+            RecipeImage::create([
+                'recipe_id' => $recipe->id,
+                'image' => $storedPath // image path
+            ]);
+        }
+
+        return redirect()->route('recipes.index');
     }
 
     /**
