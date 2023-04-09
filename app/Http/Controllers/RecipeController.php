@@ -16,8 +16,8 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::all();
-        // dd($recipes);
+        $recipes = Recipe::with('images')->get();
+
         return Inertia::render('Recipes/Index', [
             'recipes' => $recipes
         ]);
@@ -59,8 +59,10 @@ class RecipeController extends Controller
         foreach ($request->images as $img) {
             // $filename = auth()->user()->id + Str::random(10);
             // $fileName = time() . '.' . $img->getClientOriginalExtension();
-            $storedPath = Storage::disk('local')->put('recipes', $img);
-            //dd($stored);
+            $storedPath = Storage::disk('public')->put('recipes', $img);
+            // $storedPath = $img->store('recipes/');
+            // $path = $img->storeAs('images', Str::random(10) . '.jpg');
+            // dd($stored);
             RecipeImage::create([
                 'recipe_id' => $recipe->id,
                 'image' => $storedPath // image path

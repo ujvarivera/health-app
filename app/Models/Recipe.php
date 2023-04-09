@@ -25,4 +25,12 @@ class Recipe extends Model
         'quantity',
     ];
 
+    /**
+     * Get the images for the recipes.
+     */
+    public function images()
+    {
+        return $this->hasMany(RecipeImage::class, 'recipe_id', 'id');
+    }
+
 }
