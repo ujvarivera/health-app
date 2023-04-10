@@ -26,4 +26,12 @@ class RecipeComment extends Model
         'recipe_id',
         'user_id',
     ];
+
+    /**
+     * Get the user that owns the comment.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

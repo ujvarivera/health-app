@@ -78,9 +78,19 @@ export default function Show({ auth, errors, recipe }) {
                                     </PrimaryButton>
                                 </div>
                             </form>
-
                             <div id="comments">
-
+                                { recipe.comments && recipe.comments.map((comment, index) => {
+                                    return (
+                                        <div className='my-2'>
+                                            <p className='inline-block font-bold'>{ comment.user.username }</p>
+                                            { auth.user.id === comment.user.id && 
+                                                <p className='text-red-500 font-bold inline-block pl-2'>ME</p>
+                                            }
+                                            <p className='pl-4'>{ comment.comment }</p>
+                                            <p>{/* comment.created_at */}</p>
+                                        </div>
+                                    )
+                                }) }
                             </div>
 
                         </div>

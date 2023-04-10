@@ -33,4 +33,12 @@ class Recipe extends Model
         return $this->hasMany(RecipeImage::class, 'recipe_id', 'id');
     }
 
+        /**
+     * Get the comments for the recipes.
+     */
+    public function comments()
+    {
+        return $this->hasMany(RecipeComment::class, 'recipe_id', 'id');
+    }
+
 }
