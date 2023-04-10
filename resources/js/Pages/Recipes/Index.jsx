@@ -19,7 +19,7 @@ export default function Index({auth, errors, recipes}) {
                             <div className="mt-2 mb-8 inline-block">
                                 <NavLink href={route('recipes.create')}>Recipe Upload</NavLink>
                             </div>
-                            <RecipeList recipes={recipes}/>
+                            <RecipeList recipes={recipes} auth={auth}/>
                         </div>
                     </div>
                 </div>

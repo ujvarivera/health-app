@@ -16,7 +16,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::with('images')->get();
+        $recipes = Recipe::with('images', 'likes')->get();
 
         return Inertia::render('Recipes/Index', [
             'recipes' => $recipes

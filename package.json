@@ -19,6 +19,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "react-icons": "^4.8.0",
         "react-responsive-carousel": "^3.2.23"
     }
 }

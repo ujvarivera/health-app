@@ -4,6 +4,7 @@ use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeCommentController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\RecipeLikesController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -38,6 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/recipes', RecipeController::class);
     Route::post('/recipes/{recipe}/comments', [RecipeCommentController::class, 'store'])->name('recipe.comment.store');
+    Route::post('/recipes/{recipe}/likes', [RecipeLikesController::class, 'store'])->name('recipe.likes.store');
+    Route::delete('/recipes/{recipe}/likes', [RecipeLikesController::class, 'destroy'])->name('recipe.likes.destroy');
     Route::resource('/exercises', ExerciseController::class);
 });
 

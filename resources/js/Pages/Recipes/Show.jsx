@@ -8,6 +8,9 @@ import InputError from '@/Components/InputError';
 import TextInput from '@/Components/TextInput';
 import PrimaryButton from '@/Components/PrimaryButton';
 
+import { FcLikePlaceholder } from 'react-icons/fc';
+import { FcLike } from 'react-icons/fc';
+
 export default function Show({ auth, errors, recipe }) {
 
     const { data, setData, post, processing, err, reset } = useForm({
