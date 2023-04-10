@@ -77,7 +77,11 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        //
+        // dd(json_decode($recipe->load('images')));
+        // dd($recipe->images);
+        return Inertia::render('Recipes/Show', [
+            'recipe' => $recipe->load('images')
+        ]);
     }
 
     /**

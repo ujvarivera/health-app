@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Carousel CSS */
+.carousel {
+    text-align: center;
+}
+
+.carousel .slide{
+    background: #fff;
+}
+
+
+.carousel .slider-wrapper {
+    width: 50%;
+}
+
+
+.carousel .thumb {
+    width: 5%;
+    height: 50px;
+}
