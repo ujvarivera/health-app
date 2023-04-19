@@ -26,28 +26,30 @@ export default function RecipeCard({ recipe, auth }) {
     return (
         <div className="recipe-card">
             <img src={'/storage/' + recipe.images[0].image} alt={recipe.name} />
-            <NavLink href={route('recipes.show', recipe)}><h1 className="text-center">{recipe.name}</h1></NavLink>
+            <NavLink href={route('recipes.show', recipe)} className="block"><h1 className="text-center">{recipe.name}</h1></NavLink>
 
-            {
-               likedByUser ?
-               <>
-                <form onSubmit={dislikeRecipe}>
-                    <button>
-                        <FcLike size={70} />
-                    </button>
-                </form>
-               </>
-               :
-               <>
-                <form onSubmit={likeRecipe}>
-                    <button>
-                        <FcLikePlaceholder size={70} />
-                    </button>
-                </form>
+            <>
+                {
+                likedByUser ?
+                <>
+                    <form onSubmit={dislikeRecipe} className="inline-block justify-end">
+                        <button>
+                            <FcLike size={70} />
+                        </button>
+                    </form>
                 </>
-            }
-            <p>{ recipe.likes.length }</p>
-        
+                :
+                <>
+                    <form onSubmit={likeRecipe} className="inline-block justify-end">
+                        <button>
+                            <FcLikePlaceholder size={70} />
+                        </button>
+                    </form>
+                    </>
+                }
+                <p className="inline-block">{ recipe.likes.length }</p>
+            </>
+
         </div>
     )
 }
