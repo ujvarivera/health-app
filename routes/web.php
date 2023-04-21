@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeCommentController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RecipeLikesController;
+use App\Http\Controllers\UserMeasurementController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,12 +38,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     Route::resource('/recipes', RecipeController::class);
     Route::delete('/recipes/comments/{comment}', [RecipeCommentController::class, 'destroy'])->name('recipe.comment.destroy');
     Route::post('/recipes/{recipe}/comments', [RecipeCommentController::class, 'store'])->name('recipe.comment.store');
     Route::post('/recipes/{recipe}/likes', [RecipeLikesController::class, 'store'])->name('recipe.likes.store');
     Route::delete('/recipes/{recipe}/likes', [RecipeLikesController::class, 'destroy'])->name('recipe.likes.destroy');
+    
     Route::resource('/exercises', ExerciseController::class);
+
+    Route::resource('/measurements', UserMeasurementController::class);
 });
 
 require __DIR__.'/auth.php';

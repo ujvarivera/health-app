@@ -42,4 +42,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the measurements of the user.
+     */
+    public function measurements()
+    {
+        return $this->hasMany(UserMeasurement::class, 'user_id', 'id');
+    }
 }
