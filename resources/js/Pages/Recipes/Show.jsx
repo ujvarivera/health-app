@@ -10,10 +10,11 @@ import PrimaryButton from '@/Components/PrimaryButton';
 
 import { FcLikePlaceholder } from 'react-icons/fc';
 import { FcLike } from 'react-icons/fc';
+import { MdDeleteForever } from 'react-icons/md';
 
 export default function Show({ auth, errors, recipe }) {
 
-    const { data, setData, post, processing, err, reset } = useForm({
+    const { data, setData, post, processing, errors:err, reset, delete:destroy } = useForm({
         comment: '',
     });
 
@@ -22,6 +23,16 @@ export default function Show({ auth, errors, recipe }) {
         post(route('recipe.comment.store', recipe));
         setData('comment', '');
     };
+
+    const deleteComment = (comment) => {
+        // console.log(comment);
+        destroy(route('recipe.comment.destroy', comment.id));
+    }
+
+    const onSubmit = (e, comment) => {
+        e.preventDefault();
+        deleteComment(comment);
+      };
 
     const handleOnChange = (event) => {
         setData(event.target.name, event.target.value);
@@ -84,13 +95,22 @@ export default function Show({ auth, errors, recipe }) {
                             <div id="comments">
                                 { recipe.comments && recipe.comments.map((comment, index) => {
                                     return (
-                                        <div className='my-2'>
-                                            <p className='inline-block font-bold'>{ comment.user.username }</p>
+                                        <div className='my-2' key={comment.id}>
+                                            <div className='inline-block'>
+                                                <p className='inline-block font-bold'>{ comment.user.username }</p>
+                                                { auth.user.id === comment.user.id && 
+                                                    <p className='text-red-500 font-bold inline-block pl-2'>ME</p>
+                                                }
+                                                <p className='pl-4'>{ comment.comment }</p>
+                                                <p>{/* comment.created_at */}</p>
+                                            </div>
                                             { auth.user.id === comment.user.id && 
-                                                <p className='text-red-500 font-bold inline-block pl-2'>ME</p>
+                                                <form onSubmit={(e) => onSubmit(e, comment)} className="inline-block float-right">
+                                                    <button type="submit">
+                                                        <MdDeleteForever size={30} color='red'/>
+                                                    </button>
+                                                </form>
                                             }
-                                            <p className='pl-4'>{ comment.comment }</p>
-                                            <p>{/* comment.created_at */}</p>
                                         </div>
                                     )
                                 }) }

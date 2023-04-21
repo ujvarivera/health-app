@@ -23,4 +23,13 @@ class RecipeCommentController extends Controller
 
         return redirect()->back();
     }
+
+    /* Delete comment */
+    public function destroy($commentId)
+    {
+        $comment = RecipeComment::where('id', $commentId);
+        $comment->delete();
+
+        return redirect()->back();
+    }
 }

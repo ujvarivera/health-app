@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/recipes', RecipeController::class);
+    Route::delete('/recipes/comments/{comment}', [RecipeCommentController::class, 'destroy'])->name('recipe.comment.destroy');
     Route::post('/recipes/{recipe}/comments', [RecipeCommentController::class, 'store'])->name('recipe.comment.store');
     Route::post('/recipes/{recipe}/likes', [RecipeLikesController::class, 'store'])->name('recipe.likes.store');
     Route::delete('/recipes/{recipe}/likes', [RecipeLikesController::class, 'destroy'])->name('recipe.likes.destroy');
