@@ -65,10 +65,18 @@ export default function Show({ auth, errors, recipe }) {
                             </Carousel>
 
                             <div className='my-6'>
-                                <p>description: {recipe.description}</p>
-                                <p>difficulty: {recipe.difficulty}</p>
-                                <p>time in min: {recipe.time_in_min}</p>
-                                <p>quantity: for {recipe.quantity} person</p>
+                                <p className='my-2'>description: {recipe.description}</p>
+                                <p className='my-2'>difficulty: {recipe.difficulty}</p>
+                                <p className='my-2'>time in min: {recipe.time_in_min}</p>
+                                <p className='my-2'>quantity: for {recipe.quantity} person</p>
+                                <p className='my-2'>ingredients:</p>
+                                <ul>
+                                    { recipe.ingredients && recipe.ingredients.map((ingredient, index) => {
+                                        return (
+                                            <li key={ingredient.id} className='pl-6'>{ingredient.ingredient}</li>
+                                        )
+                                    }) }
+                                </ul>
                             </div>
 
                             <form onSubmit={submitComment}>

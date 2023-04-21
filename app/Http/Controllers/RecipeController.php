@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use App\Models\RecipeImage;
+use App\Models\RecipeIngredient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -36,17 +37,18 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        // dd(auth()->user()->id);
-        // dd($request->all());
+        // Validation
         $request->validate([
             'recipeName' => 'required',
+            'ingredients' => 'required',
             'description' => 'required|max:255',
             'time' => 'required',
             'difficulty' => 'required|min:0|max:5',
-            'quantity' => 'required',
+            'quantity' => 'required|max:10',
             'images' => 'required' // |mimes:jpeg,jpg,png
         ]);
 
+        // Create the recipe
         $recipe = Recipe::create([
             'name' => $request->recipeName,
             'description' => $request->description,
@@ -56,17 +58,25 @@ class RecipeController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
+        // Add images
         foreach ($request->images as $img) {
-            // $filename = auth()->user()->id + Str::random(10);
-            // $fileName = time() . '.' . $img->getClientOriginalExtension();
             $storedPath = Storage::disk('public')->put('recipes', $img);
-            // $storedPath = $img->store('recipes/');
-            // $path = $img->storeAs('images', Str::random(10) . '.jpg');
-            // dd($stored);
             RecipeImage::create([
                 'recipe_id' => $recipe->id,
                 'image' => $storedPath // image path
             ]);
+        }
+
+        // Add ingredients
+        $ingredients = $request->ingredients;
+        $ingredientsList = explode(',', $ingredients);
+        foreach ($ingredientsList as $ingredient) {
+            if (trim($ingredient) != "") {                
+                RecipeIngredient::create([
+                    'recipe_id' => $recipe->id,
+                    'ingredient' => trim($ingredient),
+                ]);
+            }
         }
 
         return redirect()->route('recipes.index');
@@ -80,7 +90,7 @@ class RecipeController extends Controller
         // dd(json_decode($recipe->load('images', 'comments', 'comments.user')));
         // dd($recipe->images);
         return Inertia::render('Recipes/Show', [
-            'recipe' => $recipe->load('images', 'comments', 'comments.user')
+            'recipe' => $recipe->load('images', 'comments', 'comments.user', 'ingredients')
         ]);
     }
 

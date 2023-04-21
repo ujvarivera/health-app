@@ -10,6 +10,7 @@ export default function Index(props) {
 
     const { data, setData, post, processing, errors, reset } = useForm({
         recipeName: '',
+        ingredients: '',
         description: '',
         time: '30',
         difficulty: '1',
@@ -58,6 +59,24 @@ export default function Index(props) {
                                         name="recipeName"
                                         value={data.recipeName}
                                         title="Recipe name is required"
+                                        className="mt-1 block w-full"
+                                        isFocused={true}
+                                        onChange={handleOnChange}
+                                    />
+
+                                    <InputError message={errors.recipeName} className="mt-2" />
+                                </div>
+
+                                <div class="mt-4">
+                                    <InputLabel htmlFor="ingredients" value="Ingredients*" />
+
+                                    <TextInput
+                                        id="ingredients"
+                                        type="text"
+                                        name="ingredients"
+                                        value={data.ingredients}
+                                        placeholder="3/4 cup flour, 1/2 teaspoon salt"
+                                        title="Ingredients are required"
                                         className="mt-1 block w-full"
                                         isFocused={true}
                                         onChange={handleOnChange}

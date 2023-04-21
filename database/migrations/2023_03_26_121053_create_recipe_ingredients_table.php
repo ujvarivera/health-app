@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('recipe_ingredients', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('recipe_id');
-            $table->smallInteger('value');
-            $table->string('unit');
-            $table->string('ingredient');
+            $table->smallInteger('value')->nullable();
+            $table->string('unit')->nullable();
+            $table->string('ingredient'); // first, value and unit will be here too
             $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
         });
     }

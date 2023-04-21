@@ -49,4 +49,12 @@ class Recipe extends Model
         return $this->hasMany(RecipeLike::class, 'recipe_id', 'id');
     }
 
+    /**
+     * Get the ingredients for the recipes.
+     */
+    public function ingredients()
+    {
+        return $this->hasMany(RecipeIngredient::class, 'recipe_id', 'id');
+    }
+
 }
