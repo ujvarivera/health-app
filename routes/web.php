@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\ExerciseUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeCommentController;
 use App\Http\Controllers\RecipeController;
@@ -47,6 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/recipes/{recipe}/likes', [RecipeLikesController::class, 'destroy'])->name('recipe.likes.destroy');
     
     Route::resource('/exercises', ExerciseController::class);
+
+    Route::resource('my-exercises', ExerciseUserController::class);
 
     Route::resource('/measurements', UserMeasurementController::class);
 

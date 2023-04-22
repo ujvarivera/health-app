@@ -23,13 +23,11 @@ export default function Index({auth, errors, userMeasurements}) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
 
-                        <NavLink href={route('measurements.create')}>
-                            Add New Measurement
-                        </NavLink>
-
-                        <NavLink href={route('goals.create')}>
-                            Add New Goal
-                        </NavLink>
+                        <div className='mb-4'>
+                            <NavLink href={route('measurements.create')}>
+                                Add New Measurement
+                            </NavLink>
+                        </div>
 
                         <DataTable value={userMeasurements} footer={footer} sortField="created_at" sortOrder={-1} removableSort  /*sortMode="multiple"*/ showGridlines paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
                             <Column field="measurement_type_name.name" sortable header="Measurement Type Name"></Column>

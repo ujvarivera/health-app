@@ -24,14 +24,17 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
                                 </NavLink>
-                                <NavLink href={route('recipes.index')} active={route().current('recipes.index')}>
+                                <NavLink href={route('recipes.index')} active={route().current('recipes.*')}>
                                     Recipes
                                 </NavLink>
-                                <NavLink href={route('exercises.index')} active={route().current('exercises.index')}>
+                                <NavLink href={route('exercises.index')} active={route().current('exercises.*')}>
                                     Exercises
                                 </NavLink>
-                                <NavLink href={route('measurements.index')} active={route().current('measurements.index')}>
+                                <NavLink href={route('measurements.index')} active={route().current('measurements.*')}>
                                     Measurements
+                                </NavLink>
+                                <NavLink href={route('goals.index')} active={route().current('goals.*')}>
+                                    Goals
                                 </NavLink>
                             </div>
                         </div>
@@ -104,14 +107,17 @@ export default function Authenticated({ auth, header, children }) {
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('recipes.index')} active={route().current('recipes.index')}>
+                        <ResponsiveNavLink href={route('recipes.index')} active={route().current('recipes.*')}>
                             Recipes
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('exercises.index')} active={route().current('exercises.index')}>
+                        <ResponsiveNavLink href={route('exercises.index')} active={route().current('exercises.*')}>
                             Exercises
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('measurements.index')} active={route().current('measurements.index')}>
+                        <ResponsiveNavLink href={route('measurements.index')} active={route().current('measurements.*')}>
                             Measurements
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('goals.index')} active={route().current('goals.*')}>
+                            Goals
                         </ResponsiveNavLink>
                     </div>
 

@@ -28,7 +28,23 @@ class ExerciseUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validation
+        $request->validate([
+            'exerciseId' => 'required',
+            'durationInMin' => 'required',
+            'note' => 'nullable',
+            'calBurned' => 'nullable',
+        ]);
+
+        ExerciseUser::create([
+            'user_id' => auth()->user()->id,
+            'exercise_id' => $request->get('exerciseId'),
+            'duration_in_min' => $request->get('durationInMin'),
+            'note' => $request->get('note') !== "" ? $request->get('note') : NULL,
+            'cal_burned' => $request->get('calBurned') !== "" ? $request->get('calBurned') : NULL,
+        ]);
+
+        return redirect()->route('exercises.index');
     }
 
     /**

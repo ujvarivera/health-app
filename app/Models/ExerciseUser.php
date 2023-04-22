@@ -22,4 +22,14 @@ class ExerciseUser extends Model
         'cal_burned',
     ];
 
+    public $timestamps = false;
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'created_at' => 'datetime',
+    ];
 }

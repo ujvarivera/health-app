@@ -91,7 +91,8 @@ export default function Index({auth, errors, userGoals}) {
                         */}
 
                         <DataTable value={selectedGoals} sortField="created_at" sortOrder={-1} removableSort showGridlines paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
-                            <Column field="measurement_type_name.name" sortable header="Goal Name"></Column>
+                            <Column field="name" sortable header="Goal Name"></Column>
+                            <Column field="measurement_type_name.name" sortable header="Measurement Name"></Column>
                             <Column field="value" sortable header="Value"></Column>
                             <Column field="measurement_type_name.unit" sortable header="Unit"></Column>
                             <Column field="created_at" sortable header="Created At"></Column>
