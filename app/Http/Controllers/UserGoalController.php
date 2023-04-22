@@ -41,4 +41,15 @@ class UserGoalController extends Controller
 
         return redirect()->route('goals.index');
     }
+
+    /* Mark goal as completed */
+    public function update(UserGoal $goal)
+    {
+        // $goal = UserGoal::where('id', $goalId)->first();
+        $goal->completed_at = Carbon::now()->toDateTimeString();
+        $goal->save();
+
+        return redirect()->route('goals.index');
+    }
+
 }

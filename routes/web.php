@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/goals', [UserGoalController::class, 'index'])->name('goals.index');
     Route::get('/goals/create', [UserGoalController::class, 'create'])->name('goals.create');
     Route::post('/goals', [UserGoalController::class, 'store'])->name('goals.store');
+    Route::put('/goals/{goal}', [UserGoalController::class, 'update'])->name('goals.update');
 });
 
 require __DIR__.'/auth.php';

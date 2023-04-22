@@ -8,10 +8,14 @@ export default function Index({auth, errors, userGoals}) {
     const { data, setData, post, processing, errors:err, reset, delete:destroy, put } = useForm({
     });
 
-    const markAsCompleted = (event) => {
-        event.preventDefault();
-        //put(route('goals.update'));
+    const markAsCompleted = (goal) => {
+        put(route('goals.update', goal));
     }
+
+    const onSubmit = (e, goal) => {
+        e.preventDefault();
+        markAsCompleted(goal);
+      };
 
     return (
         <AuthenticatedLayout
@@ -40,7 +44,7 @@ export default function Index({auth, errors, userGoals}) {
                                     {
                                         goal.completed_at ?
                                         <p className='text-green-600'>Completed at {goal.completed_at}</p> :
-                                        <form onSubmit={markAsCompleted}>
+                                        <form onSubmit={(event) => onSubmit(event, goal)}>
                                             <PrimaryButton>Mark as completed</PrimaryButton>
                                         </form>
                                     }
