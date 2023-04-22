@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UserGoal extends Model
 {
@@ -21,4 +22,21 @@ class UserGoal extends Model
         'value',
         'completed_at',
     ];
+
+    /**
+     * Get the user the goal belongs to.
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    /**
+     * Get the measurement type name.
+     */
+    public function measurementTypeName(): BelongsTo
+    {
+        return $this->belongsTo(MeasurementType::class, 'measurement_type_id', 'id');
+    }
+
 }

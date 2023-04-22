@@ -22,6 +22,14 @@ class UserMeasurement extends Model
     ];
 
     /**
+     * Get the user the measurement belongs to.
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    /**
      * Get the measurement type name.
      */
     public function measurementTypeName(): BelongsTo

@@ -9,45 +9,64 @@ import PrimaryButton from '@/Components/PrimaryButton';
 export default function Index({auth, errors, measurementTypes}) {
 
     const { data, setData, post, processing, errors:err, reset, delete:destroy } = useForm({
-        measurementValue: '',
-        measurementType: 1,
+        goalName: '',
+        goalValue: '',
+        measurementTypeId: 1,
     });
 
     const handleOnChange = (event) => {
         setData(event.target.name, event.target.value);
     };
 
-    const addMeasurement = (event) => {
+    const addGoal = (event) => {
         event.preventDefault();
-        post(route('measurements.store'));
+        post(route('goals.store'));
     }
 
     return (
         <AuthenticatedLayout
             auth={auth}
             errors={errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Add measurements</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Add New Goal</h2>}
         >
-            <Head title="Measurements" />
+            <Head title="Goals" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
 
-                            <NavLink href={route('measurements.index')}>
-                                Back To My Measurements
+                            <NavLink href={route('goals.index')}>
+                                Back To My Goals
                             </NavLink>
 
-                            <form onSubmit={addMeasurement} className='mt-4'>
+                            <div className='mt-4'>
+                                    <InputLabel htmlFor="goalName" value="Goal Name*" />
+
+                                    <TextInput
+                                        id="goalName"
+                                        type="text"
+                                        name="goalName"
+                                        value={data.goalName}
+                                        placeholder="Type in the name of your goal..."
+                                        className="mt-1 block w-full"
+                                        isFocused={true}
+                                        onChange={handleOnChange}
+                                    />
+
+                                    <InputError message={errors.goalName} className="mt-2" />
+
+                                </div>
+
+                            <form onSubmit={addGoal} className='mt-4'>
                                 <div>
                                     <InputLabel htmlFor="measurementType" value="Measurement Type*" />
                                 
                                     <select 
-                                        name="measurementType" 
+                                        name="measurementTypeId" 
                                         id="measurementType"
                                         value={data.measurementType}
-                                        onChange={(e) => setData('measurementType', e.target.value)}
+                                        onChange={(e) => setData('measurementTypeId', e.target.value)}
                                     >
                                     { measurementTypes && measurementTypes.map((measurement, index) => {
                                         return (
@@ -67,21 +86,21 @@ export default function Index({auth, errors, measurementTypes}) {
                                 </div>
 
                                 <div className='mt-4'>
-                                    <InputLabel htmlFor="measurementValue" value="Measurement Value*" />
+                                    <InputLabel htmlFor="goalValue" value="Goal Value*" />
 
                                     <TextInput
-                                        id="measurementValue"
+                                        id="goalValue"
                                         type="number"
                                         step="0.1"
-                                        name="measurementValue"
-                                        value={data.measurementValue}
-                                        placeholder="Type in your measurement value..."
+                                        name="goalValue"
+                                        value={data.goalValue}
+                                        placeholder="Type in your goal value..."
                                         className="mt-1 block w-full"
                                         isFocused={true}
                                         onChange={handleOnChange}
                                     />
 
-                                    <InputError message={errors.measurementValue} className="mt-2" />
+                                    <InputError message={errors.goalValue} className="mt-2" />
 
                                 </div>
 

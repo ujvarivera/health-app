@@ -21,6 +21,10 @@ export default function Index({auth, errors, userMeasurements}) {
                             Add New Measurement
                         </NavLink>
 
+                        <NavLink href={route('goals.create')}>
+                            Add New Goal
+                        </NavLink>
+
                         { userMeasurements.measurements && userMeasurements.measurements.map((measurement, index) => {
                             return (
                                 <div key={measurement.id} className='mt-4'>

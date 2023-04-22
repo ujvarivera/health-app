@@ -50,4 +50,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserMeasurement::class, 'user_id', 'id');
     }
+
+    /**
+     * Get the goals of the user.
+    */
+    public function goals()
+    {
+        return $this->hasMany(UserGoal::class, 'user_id', 'id');
+    }
 }

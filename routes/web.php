@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeCommentController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RecipeLikesController;
+use App\Http\Controllers\UserGoalController;
 use App\Http\Controllers\UserMeasurementController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('/exercises', ExerciseController::class);
 
     Route::resource('/measurements', UserMeasurementController::class);
+
+    Route::get('/goals', [UserGoalController::class, 'index'])->name('goals.index');
+    Route::get('/goals/create', [UserGoalController::class, 'create'])->name('goals.create');
+    Route::post('/goals', [UserGoalController::class, 'store'])->name('goals.store');
 });
 
 require __DIR__.'/auth.php';
