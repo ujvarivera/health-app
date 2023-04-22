@@ -22,6 +22,11 @@ class UserGoal extends Model
         'value',
         'completed_at',
     ];
+    
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
 
     /**
      * Get the user the goal belongs to.

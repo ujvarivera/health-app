@@ -41,6 +41,7 @@ export default function Index({auth, errors, userGoals}) {
                                     <p>Name of the goal: {goal.name}</p>
                                     <p>Measurement name: {goal.measurement_type_name.name}</p>
                                     <p>Unit: {goal.measurement_type_name.unit}</p>
+                                    <p>Created at: {goal.created_at}</p>
                                     {
                                         goal.completed_at ?
                                         <p className='text-green-600'>Completed at {goal.completed_at}</p> :
