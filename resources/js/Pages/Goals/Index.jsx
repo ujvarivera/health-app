@@ -1,12 +1,27 @@
+import { useState, useEffect } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, useForm } from '@inertiajs/react';
 import NavLink from '@/Components/NavLink';
 import PrimaryButton from '@/Components/PrimaryButton';
+import SecondaryButton from '@/Components/SecondaryButton';
 
 export default function Index({auth, errors, userGoals}) {
 
     const { data, setData, post, processing, errors:err, reset, delete:destroy, put } = useForm({
     });
+    const [selectedGoals, setSelectedGoals] = useState(userGoals);
+
+    useEffect(() => {
+        setSelectedGoals(userGoals);
+    }, [userGoals]);
+
+    const showCompleted = () => {
+        setSelectedGoals(userGoals.filter(goal => goal.completed_at !== null))
+    }
+
+    const showNotCompleted = () => {
+        setSelectedGoals(userGoals.filter(goal => goal.completed_at === null))
+    }
 
     const markAsCompleted = (goal) => {
         put(route('goals.update', goal));
@@ -34,7 +49,11 @@ export default function Index({auth, errors, userGoals}) {
                             Add New Goal
                         </NavLink>
 
-                        { userGoals && userGoals.map((goal) => {
+                        <SecondaryButton type="text" onClick={() => setSelectedGoals(userGoals)}>All Goals</SecondaryButton>
+                        <SecondaryButton type="text" onClick={showCompleted}>Completed Goals</SecondaryButton>
+                        <SecondaryButton type="text" onClick={showNotCompleted}>Not Completed Goals</SecondaryButton>
+
+                        { selectedGoals && selectedGoals.map((goal) => {
                             return (
                                 <div key={goal.id} className='mt-4'>
                                     <p>Goal value: {goal.value}</p>
