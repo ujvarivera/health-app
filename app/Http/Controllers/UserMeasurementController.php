@@ -12,9 +12,10 @@ class UserMeasurementController extends Controller
 {
     public function index()
     {
-        //$userMeasurements = auth()->user()->measurements;
-        $userMeasurements = User::where('id', auth()->user()->id)->with('measurements', 'measurements.measurementTypeName')->first();
-        //dd(json_decode($userMeasurements));
+        // $userMeasurements = auth()->user()->measurements;
+        // $userMeasurements = User::where('id', auth()->user()->id)->with('measurements', 'measurements.measurementTypeName')->first();
+        $userMeasurements = UserMeasurement::where('user_id', auth()->user()->id)->with('measurementTypeName')->get();
+        // dd(json_decode($userMeasurements));
         return Inertia::render('Measurements/Index', compact('userMeasurements'));
     }
 
