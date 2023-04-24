@@ -18,7 +18,7 @@ class Nutrition extends Model
         'fat_g',
         'protein_g',
         'carbohydrate_g',
-        'sugar_g',
+        'sugars_g',
         'fiber_g',
         'cholesterol_mg',
         'saturated_fat_g',

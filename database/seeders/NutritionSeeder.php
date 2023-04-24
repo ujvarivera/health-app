@@ -14,6 +14,6 @@ class NutritionSeeder extends Seeder
      */
     public function run(): void
     {
-        Excel::import(new NutritionImport, public_path('nutrition_5000.xlsx'));
+        Excel::import(new NutritionImport, public_path('nutrition_1500.xlsx'));
     }
 }

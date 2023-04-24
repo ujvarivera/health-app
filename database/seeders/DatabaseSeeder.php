@@ -15,15 +15,18 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'username' => 'testuser1',
             'email' => 'test@demo.com'
         ]);
+        
 
         $this->call([
             ExerciseSeeder::class,
             NutritionSeeder::class,
+            NutritionDailyValueSeeder::class,
             MeasurementTypeSeeder::class,
         ]);
 

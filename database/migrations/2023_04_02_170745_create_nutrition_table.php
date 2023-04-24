@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('nutrition', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 80);
+            $table->string('name');
             $table->string('category', 40)->nullable();
             $table->float('cal')->nullable();
             $table->float('fat_g')->nullable();
             $table->float('protein_g')->nullable();
             $table->float('carbohydrate_g')->nullable();
-            $table->float('sugar_g')->nullable();
+            $table->float('sugars_g')->nullable();
             $table->float('fiber_g')->nullable();
             $table->float('cholesterol_mg')->nullable();
             $table->float('saturated_fat_g')->nullable();

@@ -22,7 +22,7 @@ class NutritionImport implements ToModel, WithHeadingRow
             'fat_g' => $row['fat_g'],
             'protein_g' => $row['protein_g'],
             'carbohydrate_g' => $row['carbohydrate_g'],
-            'sugar_g' => $row['sugars_g'],
+            'sugars_g' => $row['sugars_g'],
             'fiber_g' => $row['fiber_g'],
             'cholesterol_mg' => $row['cholesterol_mg'],
             'saturated_fat_g' => $row['saturated_fats_g'],
