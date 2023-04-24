@@ -12,23 +12,9 @@ class NutritionController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $nutritionList = Nutrition::orderBy('name')->get();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return inertia('Nutrition/Index', compact('nutritionList'));
     }
 
     /**
@@ -36,30 +22,7 @@ class NutritionController extends Controller
      */
     public function show(Nutrition $nutrition)
     {
-        //
+        return inertia('Nutrition/Show', compact('nutrition'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Nutrition $nutrition)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Nutrition $nutrition)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Nutrition $nutrition)
-    {
-        //
-    }
 }

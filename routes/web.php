@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\ExerciseUserController;
+use App\Http\Controllers\NutritionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeCommentController;
 use App\Http\Controllers\RecipeController;
@@ -41,17 +42,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('/recipes', RecipeController::class);
+    Route::resource('/nutrition', NutritionController::class)->only(['index', 'show']);
+
+    Route::resource('/recipes', RecipeController::class)->except(['edit', 'update', 'destroy']);
     Route::delete('/recipes/comments/{comment}', [RecipeCommentController::class, 'destroy'])->name('recipe.comment.destroy');
     Route::post('/recipes/{recipe}/comments', [RecipeCommentController::class, 'store'])->name('recipe.comment.store');
     Route::post('/recipes/{recipe}/likes', [RecipeLikesController::class, 'store'])->name('recipe.likes.store');
     Route::delete('/recipes/{recipe}/likes', [RecipeLikesController::class, 'destroy'])->name('recipe.likes.destroy');
     
-    Route::resource('/exercises', ExerciseController::class);
+    Route::resource('/exercises', ExerciseController::class)->only(['index', 'show']);
 
-    Route::resource('my-exercises', ExerciseUserController::class);
+    Route::resource('my-exercises', ExerciseUserController::class)->only(['store']);
 
-    Route::resource('/measurements', UserMeasurementController::class);
+    Route::resource('/measurements', UserMeasurementController::class)->only('index', 'create', 'store');
 
     Route::get('/goals', [UserGoalController::class, 'index'])->name('goals.index');
     Route::get('/goals/create', [UserGoalController::class, 'create'])->name('goals.create');
