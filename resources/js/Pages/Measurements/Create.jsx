@@ -5,6 +5,8 @@ import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
+// import { useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Index({auth, errors, measurementTypes}) {
 
@@ -12,6 +14,15 @@ export default function Index({auth, errors, measurementTypes}) {
         measurementValue: '',
         measurementType: 1,
     });
+
+    const [measurementUnit, setMeasurementUnit] = useState('kg');
+
+    // const selectRef = useRef();
+
+    useEffect(() => {
+        var mes = measurementTypes.filter(type => type.id == data.measurementType);
+        setMeasurementUnit(mes[0].unit);
+    }, [data.measurementType]);
 
     const handleOnChange = (event) => {
         setData(event.target.name, event.target.value);
@@ -48,6 +59,7 @@ export default function Index({auth, errors, measurementTypes}) {
                                         id="measurementType"
                                         value={data.measurementType}
                                         onChange={(e) => setData('measurementType', e.target.value)}
+                                        // ref={selectRef}
                                     >
                                     { measurementTypes && measurementTypes.map((measurement, index) => {
                                         return (
@@ -84,6 +96,7 @@ export default function Index({auth, errors, measurementTypes}) {
                                     <InputError message={errors.measurementValue} className="mt-2" />
 
                                 </div>
+                                <p>{measurementUnit}</p>
 
                                 <div className="flex items-center justify-end mt-4">
                                     <PrimaryButton className="ml-4" disabled={processing}>

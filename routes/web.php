@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\ExerciseUserController;
 use App\Http\Controllers\NutritionController;
@@ -60,6 +61,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/goals/create', [UserGoalController::class, 'create'])->name('goals.create');
     Route::post('/goals', [UserGoalController::class, 'store'])->name('goals.store');
     Route::put('/goals/{goal}', [UserGoalController::class, 'update'])->name('goals.update');
+
+    Route::get('/calculators/bmi', [CalculatorController::class, 'index'])->name('calculators.index');
+
 });
 
 require __DIR__.'/auth.php';
