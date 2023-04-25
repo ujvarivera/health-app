@@ -6,9 +6,10 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
+import {useEffect} from 'react';
 
 
-export default function Index({auth, errors, userGoals}) {
+export default function Index({auth, errors, bmiRanges}) {
 
     const { data, setData, post, processing, errors:err, reset, delete:destroy, put } = useForm({
         weight: '',
@@ -16,6 +17,15 @@ export default function Index({auth, errors, userGoals}) {
     });
 
     const [bmi, setBmi] = useState('');
+    const [bmiClasses, setBmiClasses] = useState('');
+
+    useEffect(() => {
+        bmiRanges && bmiRanges.map((range) => {
+            if(bmi >= range.lower && bmi <= range.upper) {
+                setBmiClasses(range.classes + ' ' + 'text-3xl font-bold');
+            }
+        })
+    }, [bmi]);
 
     const handleOnChange = (event) => {
         setData(event.target.name, event.target.value);
@@ -70,7 +80,7 @@ export default function Index({auth, errors, userGoals}) {
                                     step="1"
                                     name="height"
                                     value={data.height}
-                                    placeholder="Type in your height (cn)"
+                                    placeholder="Type in your height (cm)"
                                     className="mt-1 block w-full"
                                     isFocused={true}
                                     onChange={handleOnChange}
@@ -86,8 +96,11 @@ export default function Index({auth, errors, userGoals}) {
                                 </PrimaryButton>
                             </div>
 
-                            <div className='text-3xl font-bold'>
-                                Your BMI: {bmi!=="" && bmi.toFixed(2)}
+                            <div className={bmiClasses}>
+                                {
+                                    bmi !== "" &&
+                                    <span>Your BMI: {bmi.toFixed(2)}</span>
+                                }
                             </div>
 
                             <table class="table-auto mt-8 border-separate border-spacing-y-4 border-spacing-10">
@@ -98,31 +111,17 @@ export default function Index({auth, errors, userGoals}) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td> &lt; 18.5</td>
-                                        <td className='text-blue-500'>Underweight</td>
-                                    </tr>
-                                    <tr>
-                                        <td> 18.5 - 24.9</td>
-                                        <td className='text-green-500'>Normal weight</td>
-                                    </tr>
-                                    <tr>
-                                        <td> 25 - 29.9 </td>
-                                        <td className='text-yellow-500'>Overweight</td>
-                                    </tr>
-                                    <tr>
-                                        <td> 30 - 34.9 </td>
-                                        <td className='text-orange-400'>Obesity Class I.</td>
-                                    </tr>
-                                    <tr>
-                                        <td> 35 - 39.9 </td>
-                                        <td className='text-orange-500'>Obesity Class II.</td>
-                                    </tr>
-                                    <tr>
-                                        <td> &gt; 40 </td>
-                                        <td className='text-red-500'>Obesity Class III.</td>
-                                    </tr>
-                            
+                                    {
+                                        bmiRanges && bmiRanges.map((range) => {
+                                            return (
+                                                <tr key={range.id}>
+                                                    <td>{range.lower} - {range.upper}</td>
+                                                    <td className={range.classes}>{range.status}</td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                  
                                 </tbody>
                             </table>
                             

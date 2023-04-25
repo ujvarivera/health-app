@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             NutritionSeeder::class,
             NutritionDailyValueSeeder::class,
             MeasurementTypeSeeder::class,
+            BmiRangeSeeder::class,
         ]);
 
     }

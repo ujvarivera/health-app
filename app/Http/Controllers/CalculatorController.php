@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\BmiRange;
 
 class CalculatorController extends Controller
 {
     public function index()
     {
-        return inertia('Calculators/Bmi');
+        $bmiRanges = BmiRange::all();
+
+        return inertia('Calculators/Bmi', compact('bmiRanges'));
     }
 }
