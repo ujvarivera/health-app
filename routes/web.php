@@ -48,9 +48,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('/recipes', RecipeController::class)->except(['edit', 'update', 'destroy']);
     Route::delete('/recipes/comments/{comment}', [RecipeCommentController::class, 'destroy'])->name('recipe.comment.destroy');
     Route::post('/recipes/{recipe}/comments', [RecipeCommentController::class, 'store'])->name('recipe.comment.store');
-    Route::post('/recipes/{recipe}/likes', [RecipeLikesController::class, 'store'])->name('recipe.likes.store');
-    Route::delete('/recipes/{recipe}/likes', [RecipeLikesController::class, 'destroy'])->name('recipe.likes.destroy');
-    
+    Route::post('/recipe/like', [RecipeLikesController::class, 'store'])->name('recipe.like');
+    Route::delete('/recipe/likes/{id}', [RecipeLikesController::class, 'destroy'])->name('recipe.dislike');
+
     Route::resource('/exercises', ExerciseController::class)->only(['index', 'show']);
 
     Route::resource('my-exercises', ExerciseUserController::class)->only(['store']);

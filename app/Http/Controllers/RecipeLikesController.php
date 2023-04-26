@@ -8,22 +8,27 @@ use Illuminate\Http\Request;
 
 class RecipeLikesController extends Controller
 {
+    // Delete specific like from recipe
+    public function destroy(Request $request, $recipeId) {
+            
+        $likedByUser = RecipeLike::where('recipe_id', $recipeId)->where('user_id', auth()->user()->id);
+        $likedByUser->delete();
+            
+        $recipe = Recipe::where('id', $recipeId)->with('images', 'likes')->first();
+
+        return response()->json($recipe);
+    }
+    
     // Store likes
-    public function store(Recipe $recipe)
+    public function store(Request $request)
     {
         RecipeLike::create([
-            'recipe_id' => $recipe->id,
+            'recipe_id' => $request->recipeId,
             'user_id' => auth()->user()->id,
         ]);
 
-        return redirect()->back();
-    }
+        $recipe = Recipe::where('id', $request->recipeId)->with('images', 'likes')->first();
 
-    // delete like from recipe
-    public function destroy(Recipe $recipe) {
-        $likedByUser = RecipeLike::where('recipe_id', $recipe->id)->where('user_id', auth()->user()->id);
-        $likedByUser->delete();
-
-        return redirect()->back();
+        return response()->json($recipe);
     }
 }
