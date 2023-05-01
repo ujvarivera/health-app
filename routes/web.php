@@ -46,8 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/nutrition', NutritionController::class)->only(['index', 'show']);
 
     Route::resource('/recipes', RecipeController::class)->except(['edit', 'update', 'destroy']);
-    Route::delete('/recipes/comments/{comment}', [RecipeCommentController::class, 'destroy'])->name('recipe.comment.destroy');
-    Route::post('/recipes/{recipe}/comments', [RecipeCommentController::class, 'store'])->name('recipe.comment.store');
+    Route::delete('/recipes/comments/{id}', [RecipeCommentController::class, 'destroy'])->name('recipe.comment.destroy');
+    Route::post('/recipe/comment', [RecipeCommentController::class, 'store'])->name('recipe.comment.store');
     Route::post('/recipe/like', [RecipeLikesController::class, 'store'])->name('recipe.like');
     Route::delete('/recipe/likes/{id}', [RecipeLikesController::class, 'destroy'])->name('recipe.dislike');
 

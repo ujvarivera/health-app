@@ -34,4 +34,12 @@ class RecipeComment extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    /**
+     * Get the recipe that the comment belongs to.
+     */
+    public function recipe()
+    {
+        return $this->belongsTo(Recipe::class, 'recipe_id', 'id');
+    }
 }

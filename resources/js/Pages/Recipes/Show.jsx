@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useState } from 'react';
 import NavLink from '@/Components/NavLink';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, useForm } from '@inertiajs/react';
@@ -7,26 +9,52 @@ import InputLabel from '@/Components/InputLabel';
 import InputError from '@/Components/InputError';
 import TextInput from '@/Components/TextInput';
 import PrimaryButton from '@/Components/PrimaryButton';
-
-import { FcLikePlaceholder } from 'react-icons/fc';
-import { FcLike } from 'react-icons/fc';
 import { MdDeleteForever } from 'react-icons/md';
 
-export default function Show({ auth, errors, recipe }) {
+export default function Show({ auth, errors, recipe:r }) {
 
-    const { data, setData, post, processing, errors:err, reset, delete:destroy } = useForm({
+    const { data, setData, post, processing, errors:err, setError, reset, delete:destroy } = useForm({
         comment: '',
     });
 
+    const [recipe, setRecipe] = useState(r);
+
+    const storeCommentURL = '/recipe/comment';
+    // const deleteCommentURL = `/recipes/comments/${comment}`
+
     const submitComment = (event) => {
         event.preventDefault();
-        post(route('recipe.comment.store', recipe));
+        setError('comment', '');
+        // post(route('recipe.comment.store', recipe));
+        axios.post(storeCommentURL, {
+            recipeId: recipe.id,
+            comment: data.comment
+          }, {
+            headers: {
+              'Content-Type': 'application/json',
+              // 'X-CSRF-TOKEN': csrfToken
+            }
+          })
+          .then(response => {
+            setRecipe(response.data);
+          })
+          .catch(error => {
+            setError('comment', error.response.data.message);
+          });
+
         setData('comment', '');
     };
 
     const deleteComment = (comment) => {
-        // console.log(comment);
-        destroy(route('recipe.comment.destroy', comment.id));
+        // destroy(route('recipe.comment.destroy', comment.id));
+        setError('comment', '');
+        axios.delete(`/recipes/comments/${comment.id}`)
+          .then(response => {
+            setRecipe(response.data);
+          })
+          .catch(error => {
+            console.log(error);
+          });
     }
 
     const onSubmit = (e, comment) => {
@@ -93,6 +121,8 @@ export default function Show({ auth, errors, recipe }) {
                                         isFocused={true}
                                         onChange={handleOnChange}
                                     />
+
+                                    <InputError message={err.comment} className="mt-2" />
                                 </div>
                                 <div className="flex items-center justify-end mt-4">
                                     <PrimaryButton className="ml-4" disabled={processing}>

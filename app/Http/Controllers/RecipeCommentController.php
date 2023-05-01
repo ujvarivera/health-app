@@ -9,27 +9,31 @@ use Illuminate\Http\Request;
 class RecipeCommentController extends Controller
 {
     /* Store comment for a specific recipe */
-    public function store(Request $request, Recipe $recipe)
+    public function store(Request $request)
     {
         $request->validate([
-            'comment' => 'required|min:1',
+            'comment' => 'required',
         ]);
-
+        
         RecipeComment::create([
             'comment' => $request->comment,
-            'recipe_id' => $recipe->id,
+            'recipe_id' => $request->recipeId,
             'user_id' => auth()->user()->id,
         ]);
+        
+        $recipe = Recipe::where('id', $request->recipeId)->with('images', 'comments', 'comments.user', 'ingredients')->first();
 
-        return redirect()->back();
+        return response()->json($recipe);
     }
 
     /* Delete comment */
-    public function destroy($commentId)
+    public function destroy(Request $request, $commentId)
     {
-        $comment = RecipeComment::where('id', $commentId);
+        $comment = RecipeComment::where('id', $commentId)->first();
+        $recipe = $comment->recipe;
         $comment->delete();
+        $recipe->load('images', 'comments', 'comments.user', 'ingredients');
 
-        return redirect()->back();
+        return response()->json($recipe);
     }
 }
