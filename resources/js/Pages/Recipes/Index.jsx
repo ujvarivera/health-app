@@ -2,8 +2,9 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import NavLink from '@/Components/NavLink';
 import RecipeList from './Partials/RecipeList';
+import FlashMessage from '@/Components/FlashMessage';
 
-export default function Index({auth, errors, recipes}) {
+export default function Index({auth, errors, flash, recipes}) {
     return (
         <AuthenticatedLayout
             auth={auth}
@@ -19,6 +20,10 @@ export default function Index({auth, errors, recipes}) {
                             <div className="mt-2 mb-8 inline-block">
                                 <NavLink href={route('recipes.create')}>Recipe Upload</NavLink>
                             </div>
+                            {
+                                flash.success && 
+                                <FlashMessage message={flash.success}/>
+                            }
                             <RecipeList recipes={recipes} auth={auth}/>
                         </div>
                     </div>

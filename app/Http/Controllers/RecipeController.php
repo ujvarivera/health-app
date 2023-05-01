@@ -81,7 +81,7 @@ class RecipeController extends Controller
             }
         }
 
-        return redirect()->route('recipes.index');
+        return redirect()->route('recipes.index')->with('success', 'Recipe added successfully!');
     }
 
     /**

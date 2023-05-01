@@ -1,3 +1,4 @@
+import Alpine from 'alpinejs'
 import './bootstrap';
 import '../css/app.css';
 
@@ -12,6 +13,10 @@ createInertiaApp({
     resolve: (name) => resolvePageComponent(`./Pages/${name}.jsx`, import.meta.glob('./Pages/**/*.jsx')),
     setup({ el, App, props }) {
         const root = createRoot(el);
+ 
+        // initialize alpine js
+        window.Alpine = Alpine;
+        Alpine.start();
 
         root.render(<App {...props} />);
     },
