@@ -87,7 +87,8 @@ export default function Show({ auth, errors, recipe:r }) {
                                         key={recipe.id} 
                                         /* className='object-contain h-48 w-96' */
                                         /* className='object-scale-down h-60 w-96' */
-                                    />
+                                        /* style={{ objectFit: 'cover', width: '100%', height: '100%' }} */
+                                        style={{ objectFit: 'contain', width: '100%', height: '100%' }}                                    />
                                 )
                             }) }
                             </Carousel>

@@ -11,11 +11,14 @@
     background: #fff;
 }
 
+.carousel .slide img {
+    max-height: 500px;
+    width: auto;
+}
 
 .carousel .slider-wrapper {
     width: 50%;
 }
-
 
 .carousel .thumb {
     width: 5%;
