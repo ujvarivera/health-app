@@ -1,4 +1,4 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import Layout from '@/Layouts/Layout';
 import { Head } from '@inertiajs/react';
 import { useState } from 'react';
 import NavLink from '@/Components/NavLink';
@@ -16,7 +16,7 @@ export default function Index({auth, errors, flash, recipes}) {
     */
 
     return (
-        <AuthenticatedLayout
+        <Layout
             auth={auth}
             errors={errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Recipes</h2>}
@@ -41,6 +41,6 @@ export default function Index({auth, errors, flash, recipes}) {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </Layout>
     );
 }

@@ -1,4 +1,4 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import Layout from '@/Layouts/Layout';
 import { Head } from '@inertiajs/react';
 import NavLink from '@/Components/NavLink';
 import { DataTable } from 'primereact/datatable';
@@ -11,7 +11,7 @@ export default function Index({auth, errors, userMeasurements}) {
     const footer = `In total there are ${userMeasurements ? userMeasurements.length : 0} measurements.`;
 
     return (
-        <AuthenticatedLayout
+        <Layout
             auth={auth}
             errors={errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">My measurements</h2>}
@@ -40,6 +40,6 @@ export default function Index({auth, errors, userMeasurements}) {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </Layout>
     );
 }

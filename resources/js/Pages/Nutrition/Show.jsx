@@ -1,5 +1,5 @@
 import NavLink from '@/Components/NavLink';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import Layout from '@/Layouts/Layout';
 import { Head, useForm } from '@inertiajs/react';
 import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
@@ -9,7 +9,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 export default function Show({ auth, errors, nutrition }) {
 
     return (
-        <AuthenticatedLayout
+        <Layout
             auth={auth}
             errors={errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">{nutrition.name}</h2>}
@@ -53,6 +53,6 @@ export default function Show({ auth, errors, nutrition }) {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </Layout>
     );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import Layout from '@/Layouts/Layout';
 import { Head, useForm } from '@inertiajs/react';
 import NavLink from '@/Components/NavLink';
 import PrimaryButton from '@/Components/PrimaryButton';
@@ -48,7 +48,7 @@ export default function Index({auth, errors, userGoals}) {
     };
 
     return (
-        <AuthenticatedLayout
+        <Layout
             auth={auth}
             errors={errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">My Goals</h2>}
@@ -103,6 +103,6 @@ export default function Index({auth, errors, userGoals}) {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </Layout>
     );
 }

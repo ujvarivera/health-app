@@ -1,4 +1,4 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import Layout from '@/Layouts/Layout';
 import Checkbox from '@/Components/Checkbox';
 import InputLabel from '@/Components/InputLabel';
 import InputError from '@/Components/InputError';
@@ -37,7 +37,7 @@ export default function Index(props) {
     };
 
     return (
-        <AuthenticatedLayout
+        <Layout
             auth={props.auth}
             errors={props.errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Recipes</h2>}
@@ -181,6 +181,6 @@ export default function Index(props) {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </Layout>
     );
 }

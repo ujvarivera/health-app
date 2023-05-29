@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import NavLink from '@/Components/NavLink';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import Layout from '@/Layouts/Layout';
 import { Head, useForm } from '@inertiajs/react';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -67,7 +67,7 @@ export default function Show({ auth, errors, recipe:r }) {
     };
 
     return (
-        <AuthenticatedLayout
+        <Layout
             auth={auth}
             errors={errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Recipe: {recipe.name}</h2>}
@@ -159,6 +159,6 @@ export default function Show({ auth, errors, recipe:r }) {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </Layout>
     );
 }

@@ -1,4 +1,4 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import Layout from '@/Layouts/Layout';
 import { Head, useForm } from '@inertiajs/react';
 import NavLink from '@/Components/NavLink';
 import TextInput from '@/Components/TextInput';
@@ -33,7 +33,7 @@ export default function Index({auth, errors, measurementTypes}) {
     }
 
     return (
-        <AuthenticatedLayout
+        <Layout
             auth={auth}
             errors={errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Add New Goal</h2>}
@@ -126,6 +126,6 @@ export default function Index({auth, errors, measurementTypes}) {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </Layout>
     );
 }

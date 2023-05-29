@@ -1,5 +1,5 @@
 import NavLink from '@/Components/NavLink';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import Layout from '@/Layouts/Layout';
 import { Head, useForm } from '@inertiajs/react';
 import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
@@ -24,7 +24,7 @@ export default function Show({ auth, errors, exercise }) {
     }
 
     return (
-        <AuthenticatedLayout
+        <Layout
             auth={auth}
             errors={errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Exercise: {exercise.name}</h2>}
@@ -112,6 +112,6 @@ export default function Show({ auth, errors, exercise }) {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </Layout>
     );
 }
