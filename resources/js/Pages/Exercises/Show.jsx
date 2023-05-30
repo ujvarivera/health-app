@@ -44,6 +44,7 @@ export default function Show({ auth, errors, exercise }) {
                                     <p>Body Part: {exercise.body_part}</p>
                                     <p>Equipment: {exercise.equipment}</p>
 
+                                    {auth?.user &&
                                     <form onSubmit={addMyExercise} className='mt-4'>
                                         <div className='mt-4'>
                                             <InputLabel htmlFor="durationInMin" value="Duration In Minutes*" />
@@ -106,6 +107,7 @@ export default function Show({ auth, errors, exercise }) {
                                         </div>
 
                                     </form>
+                                    }
                                 </div>
                             </div>
                         </div>

@@ -13,7 +13,7 @@ export default function RecipeCard({ recipe:r, auth }) {
     });
 
     const [recipe, setRecipe] = useState(r);
-    var likedByUser = recipe.likes.filter(like => like.user_id === auth.user.id).length > 0;
+    var likedByUser = recipe.likes.filter(like => like.user_id === auth?.user?.id).length > 0;
 
     const recipeLikeUrl = '/recipe/like';
     const recipeDislikeUrl = `/recipe/likes/${recipe.id}`;

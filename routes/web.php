@@ -43,18 +43,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('/nutrition', NutritionController::class)->only(['index', 'show']);
-
-    Route::resource('/recipes', RecipeController::class)->except(['edit', 'update', 'destroy']);
     Route::delete('/recipes/comments/{id}', [RecipeCommentController::class, 'destroy'])->name('recipe.comment.destroy');
     Route::post('/recipe/comment', [RecipeCommentController::class, 'store'])->name('recipe.comment.store');
     Route::post('/recipe/like', [RecipeLikesController::class, 'store'])->name('recipe.like');
     Route::delete('/recipe/likes/{id}', [RecipeLikesController::class, 'destroy'])->name('recipe.dislike');
 
-    Route::resource('/exercises', ExerciseController::class)->only(['index', 'show']);
-
     Route::resource('my-exercises', ExerciseUserController::class)->only(['store']);
-
     Route::resource('/measurements', UserMeasurementController::class)->only('index', 'create', 'store');
 
     Route::get('/goals', [UserGoalController::class, 'index'])->name('goals.index');
@@ -62,8 +56,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/goals', [UserGoalController::class, 'store'])->name('goals.store');
     Route::put('/goals/{goal}', [UserGoalController::class, 'update'])->name('goals.update');
 
-    Route::get('/calculators/bmi', [CalculatorController::class, 'index'])->name('calculators.index');
-
 });
+
+Route::resource('/nutrition', NutritionController::class)->only(['index', 'show']);
+Route::resource('/exercises', ExerciseController::class)->only(['index', 'show']);
+Route::get('/calculators/bmi', [CalculatorController::class, 'index'])->name('calculators.index');
+Route::resource('/recipes', RecipeController::class)->except(['edit', 'update', 'destroy']);
 
 require __DIR__.'/auth.php';

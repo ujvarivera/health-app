@@ -10,25 +10,28 @@ class RecipeLikesController extends Controller
 {
     // Delete specific like from recipe
     public function destroy(Request $request, $recipeId) {
-            
-        $likedByUser = RecipeLike::where('recipe_id', $recipeId)->where('user_id', auth()->user()->id);
-        $likedByUser->delete();
-            
-        $recipe = Recipe::where('id', $recipeId)->with('images', 'likes')->first();
+        if (auth()->check()) {
+            $likedByUser = RecipeLike::where('recipe_id', $recipeId)->where('user_id', auth()->user()->id);
+            $likedByUser->delete();
+                
+            $recipe = Recipe::where('id', $recipeId)->with('images', 'likes')->first();
 
-        return response()->json($recipe);
+            return response()->json($recipe);
+        }
     }
     
     // Store likes
     public function store(Request $request)
     {
-        RecipeLike::create([
-            'recipe_id' => $request->recipeId,
-            'user_id' => auth()->user()->id,
-        ]);
+        if (auth()->check()) {
+            RecipeLike::create([
+                'recipe_id' => $request->recipeId,
+                'user_id' => auth()->user()->id,
+            ]);
 
-        $recipe = Recipe::where('id', $request->recipeId)->with('images', 'likes')->first();
+            $recipe = Recipe::where('id', $request->recipeId)->with('images', 'likes')->first();
 
-        return response()->json($recipe);
+            return response()->json($recipe);
+        }
     }
 }

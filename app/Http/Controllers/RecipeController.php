@@ -39,49 +39,51 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        // Validation
-        $request->validate([
-            'recipeName' => 'required',
-            'ingredients' => 'required',
-            'description' => 'required|max:255',
-            'time' => 'required',
-            'difficulty' => 'required|min:0|max:5',
-            'quantity' => 'required|max:10',
-            'images' => 'required' // |mimes:jpeg,jpg,png
-        ]);
-
-        // Create the recipe
-        $recipe = Recipe::create([
-            'name' => $request->recipeName,
-            'description' => $request->description,
-            'time_in_min' => $request->time,
-            'difficulty' => $request->difficulty,
-            'quantity' => $request->quantity,
-            'user_id' => auth()->user()->id,
-        ]);
-
-        // Add images
-        foreach ($request->images as $img) {
-            $storedPath = Storage::disk('public')->put('recipes', $img);
-            RecipeImage::create([
-                'recipe_id' => $recipe->id,
-                'image' => $storedPath // image path
+        if (auth()->check()) {
+            // Validation
+            $request->validate([
+                'recipeName' => 'required',
+                'ingredients' => 'required',
+                'description' => 'required|max:255',
+                'time' => 'required',
+                'difficulty' => 'required|min:0|max:5',
+                'quantity' => 'required|max:10',
+                'images' => 'required' // |mimes:jpeg,jpg,png
             ]);
-        }
 
-        // Add ingredients
-        $ingredients = $request->ingredients;
-        $ingredientsList = explode(',', $ingredients);
-        foreach ($ingredientsList as $ingredient) {
-            if (trim($ingredient) != "") {                
-                RecipeIngredient::create([
+            // Create the recipe
+            $recipe = Recipe::create([
+                'name' => $request->recipeName,
+                'description' => $request->description,
+                'time_in_min' => $request->time,
+                'difficulty' => $request->difficulty,
+                'quantity' => $request->quantity,
+                'user_id' => auth()->user()->id,
+            ]);
+
+            // Add images
+            foreach ($request->images as $img) {
+                $storedPath = Storage::disk('public')->put('recipes', $img);
+                RecipeImage::create([
                     'recipe_id' => $recipe->id,
-                    'ingredient' => trim($ingredient),
+                    'image' => $storedPath // image path
                 ]);
             }
-        }
 
-        return redirect()->route('recipes.index')->with('success', 'Recipe added successfully!');
+            // Add ingredients
+            $ingredients = $request->ingredients;
+            $ingredientsList = explode(',', $ingredients);
+            foreach ($ingredientsList as $ingredient) {
+                if (trim($ingredient) != "") {                
+                    RecipeIngredient::create([
+                        'recipe_id' => $recipe->id,
+                        'ingredient' => trim($ingredient),
+                    ]);
+                }
+            }
+
+            return redirect()->route('recipes.index')->with('success', 'Recipe added successfully!');
+        }
     }
 
     /**
