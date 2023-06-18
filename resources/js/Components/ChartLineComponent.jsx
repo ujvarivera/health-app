@@ -11,7 +11,7 @@ ChartJS.register(
     Legend
 );
 
-export default function ChartLineComponent({ labels, labelName, data }) {
+export default function ChartLineComponent({ labels, labelName, data, title }) {
 
     const chartData = {
         labels: labels,
@@ -32,8 +32,13 @@ export default function ChartLineComponent({ labels, labelName, data }) {
           },
           title: {
             display: true,
-            text: 'Measurements',
+            text: title,
           },
+        },
+        scales: {
+            x: {
+              display: false, // Hide x-axis labels
+            },
         },
     };
 
