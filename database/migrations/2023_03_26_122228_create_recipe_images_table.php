@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('recipe_images', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('recipe_id');
-            $table->string('image', 50);
+            $table->string('image', 200);
             $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
         });
     }

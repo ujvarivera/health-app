@@ -13,6 +13,7 @@ export default function RecipeCard({ recipe:r, auth }) {
     });
 
     const [recipe, setRecipe] = useState(r);
+    const [error, setError] = useState('');
     var likedByUser = recipe.likes.filter(like => like.user_id === auth?.user?.id).length > 0;
 
     const recipeLikeUrl = '/recipe/like';
@@ -35,7 +36,7 @@ export default function RecipeCard({ recipe:r, auth }) {
             setRecipe(response.data);
           })
           .catch(error => {
-            console.log(error);
+            setError(error);
           });
     }
 
@@ -52,11 +53,15 @@ export default function RecipeCard({ recipe:r, auth }) {
             console.log(error);
           });
     }
-    
+
+    if (error?.response?.status === 401) {
+      alert('Please log in to continue');
+      setError('');
+    }
 
     return (
         <div className="my-10">
-            <img src={'/storage/' + recipe.images[0].image} alt={recipe.name} className='w-80 h-40'/>
+            <img src={'/storage/' + recipe.images[0]?.image} alt={recipe.name} className='w-80 h-40'/>
             <NavLink href={route('recipes.show', recipe)} className="inline-block float-left mt-10"><h1 className="text-center">{recipe.name}</h1></NavLink>
 
             <div className='inline-block float-right'>
