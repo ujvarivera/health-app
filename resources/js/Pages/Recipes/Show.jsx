@@ -108,52 +108,59 @@ export default function Show({ auth, errors, recipe:r }) {
                                 </ul>
                             </div>
 
-                            <form onSubmit={submitComment}>
-                                <div>
-                                    <InputLabel htmlFor="comment" value="Comment" />
+                            {
+                                auth?.user ? 
+                                <>
+                                    <form onSubmit={submitComment}>
+                                        <div>
+                                            <InputLabel htmlFor="comment" value="Comment" />
 
-                                    <TextInput
-                                        id="comment"
-                                        type="text"
-                                        name="comment"
-                                        value={data.comment}
-                                        placeholder="Type in your comment..."
-                                        className="mt-1 block w-full"
-                                        isFocused={true}
-                                        onChange={handleOnChange}
-                                    />
+                                            <TextInput
+                                                id="comment"
+                                                type="text"
+                                                name="comment"
+                                                value={data.comment}
+                                                placeholder="Type in your comment..."
+                                                className="mt-1 block w-full"
+                                                isFocused={true}
+                                                onChange={handleOnChange}
+                                            />
 
-                                    <InputError message={err.comment} className="mt-2" />
-                                </div>
-                                <div className="flex items-center justify-end mt-4">
-                                    <PrimaryButton className="ml-4" disabled={processing}>
-                                    Send
-                                    </PrimaryButton>
-                                </div>
-                            </form>
-                            <div id="comments">
-                                { recipe.comments && recipe.comments.map((comment, index) => {
-                                    return (
-                                        <div className='my-2' key={comment.id}>
-                                            <div className='inline-block'>
-                                                <p className='inline-block font-bold'>{ comment.user.username }</p>
-                                                { auth?.user?.id === comment.user.id && 
-                                                    <p className='text-red-500 font-bold inline-block pl-2'>ME</p>
-                                                }
-                                                <p className='pl-4'>{ comment.comment }</p>
-                                                <p>{/* comment.created_at */}</p>
-                                            </div>
-                                            { auth?.user?.id === comment.user.id && 
-                                                <form onSubmit={(e) => onSubmit(e, comment)} className="inline-block float-right">
-                                                    <button type="submit">
-                                                        <MdDeleteForever size={30} color='red'/>
-                                                    </button>
-                                                </form>
-                                            }
+                                            <InputError message={err.comment} className="mt-2" />
                                         </div>
-                                    )
-                                }) }
-                            </div>
+                                        <div className="flex items-center justify-end mt-4">
+                                            <PrimaryButton className="ml-4" disabled={processing}>
+                                            Send
+                                            </PrimaryButton>
+                                        </div>
+                                    </form>
+                                    <div id="comments">
+                                        { recipe.comments && recipe.comments.map((comment, index) => {
+                                            return (
+                                                <div className='my-2' key={comment.id}>
+                                                    <div className='inline-block'>
+                                                        <p className='inline-block font-bold'>{ comment.user.username }</p>
+                                                        { auth?.user?.id === comment.user.id && 
+                                                            <p className='text-red-500 font-bold inline-block pl-2'>ME</p>
+                                                        }
+                                                        <p className='pl-4'>{ comment.comment }</p>
+                                                        <p>{/* comment.created_at */}</p>
+                                                    </div>
+                                                    { auth?.user?.id === comment.user.id && 
+                                                        <form onSubmit={(e) => onSubmit(e, comment)} className="inline-block float-right">
+                                                            <button type="submit">
+                                                                <MdDeleteForever size={30} color='red'/>
+                                                            </button>
+                                                        </form>
+                                                    }
+                                                </div>
+                                            )
+                                        }) }
+                                    </div>
+                                </>
+                                :
+                                <p className='text-red-400'>You need to be logged in to see the comments.</p>
+                            }
 
                         </div>
                     </div>
