@@ -5,11 +5,17 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css"; 
+import ChartLineComponent from '@/Components/ChartLineComponent';
 
 export default function Index({auth, errors, userMeasurements}) {
 
     const footer = `In total there are ${userMeasurements ? userMeasurements.length : 0} measurements.`;
 
+    const labels = userMeasurements.filter(item => item.measurement_type_id === 1).map(mes => mes.created_at);
+    const label = 'Weight';
+    const chartData = userMeasurements.filter(item => item.measurement_type_id === 1).map(mes => mes.value);
+    // console.log(userMeasurements[0].measurement_type_name);
+    
     return (
         <Layout
             auth={auth}
@@ -28,7 +34,10 @@ export default function Index({auth, errors, userMeasurements}) {
                                 Add New Measurement
                             </NavLink>
                         </div>
+                        
+                        <ChartLineComponent labelName={label} labels={labels} data={chartData}/>
 
+                        <h2 className='text-2xl my-6 mt-20'>All measurements</h2>
                         <DataTable value={userMeasurements} footer={footer} sortField="created_at" sortOrder={-1} removableSort  /*sortMode="multiple"*/ showGridlines paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
                             <Column field="measurement_type_name.name" sortable header="Measurement Type Name"></Column>
                             <Column field="value" sortable header="Value"></Column>
