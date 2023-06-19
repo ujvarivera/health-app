@@ -71,14 +71,15 @@ export default function Show({ auth, errors, nutrition, dailyValues }) {
 
                             <div className='text-center rounded overflow-hidden shadow-lg'>
                                 <h2 className='text-3xl font-bold'>Nutrition Facts</h2>
-                                <p>Serving Size: 100 grams (100 g)</p>
-                                <p className='text-2xl font-bold'>{nutrition.cal} cal</p>
+                                <p>Serving Size: {(100 * data.quantity).toFixed(2)} grams ({(100 * data.quantity).toFixed(2)} g)</p>
+                                <p className='text-2xl font-bold'>{(nutrition.cal * data.quantity).toFixed(2)} cal</p>
 
                                 <form onSubmit={storeNutrition}>
                                         <div className="mt-4 inline-block">
                                             <TextInput
                                                 id="quantity"
                                                 type="number"
+                                                min="1"
                                                 step="0.1"
                                                 name="quantity"
                                                 value={data.quantity}
@@ -104,11 +105,11 @@ export default function Show({ auth, errors, nutrition, dailyValues }) {
                                         <td>% Daily Value</td>
                                     </tr>
                                     { dailyValues.map((dv, index) => {
-                                        const nutrientValue = nutrition[dv.code];
+                                        const nutrientValue = nutrition[dv.code] * data.quantity;
                                         return (
                                             <tr>
                                                 <td className='px-4 text-left'>{dv.name}</td>
-                                                <td className='px-4 text-right'>{nutrientValue} {dv.unit}</td>
+                                                <td className='px-4 text-right'>{nutrientValue.toFixed(2)} {dv.unit}</td>
                                                 <td className='px-4 text-right'>{Math.round((nutrientValue / dv.dv) * 100)}%</td>
                                             </tr>
                                         )
