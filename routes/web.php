@@ -8,8 +8,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeCommentController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RecipeLikesController;
+use App\Http\Controllers\UserConsumptionController;
 use App\Http\Controllers\UserGoalController;
 use App\Http\Controllers\UserMeasurementController;
+use App\Models\UserConsumption;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -55,6 +57,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/goals/create', [UserGoalController::class, 'create'])->name('goals.create');
     Route::post('/goals', [UserGoalController::class, 'store'])->name('goals.store');
     Route::put('/goals/{goal}', [UserGoalController::class, 'update'])->name('goals.update');
+
+    Route::post('/calories', [UserConsumptionController::class, 'store'])->name('calories.post');
 
 });
 
