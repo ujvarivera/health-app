@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('nutrition_daily_values', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 30)->unique();
+            $table->string('code', 30)->unique();
+            $table->string('name', 50)->unique();
             $table->string('category', 30)->nullable();
             $table->float('dv'); // daily value
             $table->char('unit', 3);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nutrition;
+use App\Models\NutritionDailyValue;
 use Illuminate\Http\Request;
 
 class NutritionController extends Controller
@@ -22,7 +23,7 @@ class NutritionController extends Controller
      */
     public function show(Nutrition $nutrition)
     {
-        return inertia('Nutrition/Show', compact('nutrition'));
+        $dailyValues = NutritionDailyValue::all();
+        return inertia('Nutrition/Show', compact('nutrition', 'dailyValues'));
     }
-
 }

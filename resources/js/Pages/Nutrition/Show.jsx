@@ -6,7 +6,7 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 
-export default function Show({ auth, errors, nutrition }) {
+export default function Show({ auth, errors, nutrition, dailyValues }) {
 
     return (
         <Layout
@@ -21,32 +21,32 @@ export default function Show({ auth, errors, nutrition }) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
                             <NavLink href={route('nutrition.index')}>Back</NavLink>
-                            
+
                             <div className='text-center mb-6'>
                                 <h1 className='text-3xl font-bold text-blue-500'>{nutrition.name}</h1>
-                                <p>Serving Size: 100 g</p>
                             </div>
 
                             <div className='text-center rounded overflow-hidden shadow-lg'>
                                 <h2 className='text-3xl font-bold'>Nutrition Facts</h2>
                                 <p>Serving Size: 100 grams (100 g)</p>
-                                <p className='text-2xl font-bold'>Calories {nutrition.cal}</p>
-                                <p className='font-bold pl-40'>% Daily Value</p>
-                                <div>
-                                    <span className='px-4'>Total Fat </span>
-                                    <span className='px-4'>{nutrition.fat_g} g</span>
-                                    <span className='px-4'>{Math.round((nutrition.fat_g / 78) * 100)} %</span>
-                                </div>
-                                <div>
-                                    <span className='px-4'>Saturated Fat </span>
-                                    <span className='px-4'>{nutrition.saturated_fat_g} g</span>
-                                    <span className='px-4'>{Math.round((nutrition.saturated_fat_g / 20) * 100)} %</span>
-                                </div>
-                                <div>
-                                    <span className='px-4'>Cholesterol </span>
-                                    <span className='px-4'>{nutrition.cholesterol_mg} mg</span>
-                                    <span className='px-4'>{Math.round((nutrition.cholesterol_mg / 300) * 100)} %</span>
-                                </div>
+                                <p className='text-2xl font-bold'>{nutrition.cal} cal</p>
+                                <table class="mx-auto mt-8 border-separate border-spacing-2 border border-slate-400">
+                                    <tr className='font-bold pl-40'>
+                                        <td></td>
+                                        <td></td>
+                                        <td>% Daily Value</td>
+                                    </tr>
+                                    { dailyValues.map((dv, index) => {
+                                        const nutrientValue = nutrition[dv.code];
+                                        return (
+                                            <tr>
+                                                <td className='px-4 text-left'>{dv.name}</td>
+                                                <td className='px-4 text-right'>{nutrientValue} {dv.unit}</td>
+                                                <td className='px-4 text-right'>{Math.round((nutrientValue / dv.dv) * 100)}%</td>
+                                            </tr>
+                                        )
+                                    }) }
+                                </table>
                             </div>
 
                         </div>

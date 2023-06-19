@@ -15,127 +15,154 @@ class NutritionDailyValueSeeder extends Seeder
     {
         DB::table('nutrition_daily_values')->insert([
             [
-                'name' => 'calories',
+                'name' => 'Calories',
+                'code' => 'cal',
                 'category' => 'macronutrients',
                 'dv' => '2000',
                 'unit' => 'cal'
             ],
             [
-                'name' => 'protein',
+                'name' => 'Protein',
+                'code' => 'protein_g',
                 'category' => 'macronutrients',
                 'dv' => '50',
                 'unit' => 'g'
             ],
             [
-                'name' => 'fat',
+                'name' => 'Fat',
+                'code' => 'fat_g',
                 'category' => 'macronutrients',
                 'dv' => '78',
                 'unit' => 'g'
             ],
             [
-                'name' => 'saturated_fats',
+                'name' => 'Saturated Fats',
+                'code' => 'saturated_fat_g',
                 'category' => 'macronutrients',
                 'dv' => '20',
                 'unit' => 'g'
             ],
             [
-                'name' => 'carbohydrate',
+                'name' => 'Carbohydrate',
+                'code' => 'carbohydrate_g',
                 'category' => 'macronutrients',
                 'dv' => '275',
                 'unit' => 'g'
             ],
             [
-                'name' => 'net_carbs',
+                'name' => 'Net Carbs',
+                'code' => 'net_carbs_g',
                 'category' => 'macronutrients',
                 'dv' => '100',
                 'unit' => 'g'
             ],
             [
-                'name' => 'fiber',
+                'name' => 'Fiber',
+                'code' => 'fiber_g',
                 'category' => 'macronutrients',
                 'dv' => '28',
                 'unit' => 'g'
             ],
             [
-                'name' => 'sugars',
+                'name' => 'Sugars',
+                'code' => 'sugars_g',
                 'category' => 'macronutrients',
                 'dv' => '50',
                 'unit' => 'g'
             ],
+            /*
             [
-                'name' => 'sodium',
+                'name' => 'Sodium',
+                'code' => 'sodium',
                 'category' => 'minerals',
                 'dv' => '2300',
                 'unit' => 'mg'
             ],
+            */
             [
-                'name' => 'potassium',
+                'name' => 'Potassium',
+                'code' => 'potassium_mg',
                 'category' => 'minerals',
                 'dv' => '4700',
                 'unit' => 'mg'
             ],
             [
-                'name' => 'magnesium',
+                'name' => 'Magnesium',
+                'code' => 'magnesium_mg',
                 'category' => 'minerals',
                 'dv' => '420',
                 'unit' => 'mg'
             ],
+            /*
             [
-                'name' => 'phosphorus',
+                'name' => 'Phosphorus',
+                'code' => 'phosphorus',
                 'category' => 'minerals',
                 'dv' => '1250',
                 'unit' => 'mg'
             ],
+            */
             [
-                'name' => 'calcium',
+                'name' => 'Calcium',
+                'code' => 'calcium_mg',
                 'category' => 'minerals',
                 'dv' => '1300',
                 'unit' => 'mg'
             ],
             [
-                'name' => 'iron',
+                'name' => 'Iron',
+                'code' => 'iron_mg',
                 'category' => 'minerals',
                 'dv' => '18',
                 'unit' => 'mg'
             ],
             [
-                'name' => 'vitamin_c',
+                'name' => 'Vitamin C',
+                'code' => 'vitamin_c_mg',
                 'category' => 'vitamins',
                 'dv' => '90',
-                'unit' => 'cmg'
+                'unit' => 'mg'
             ],
             [
-                'name' => 'vitamin_d',
+                'name' => 'Vitamin D',
+                'code' => 'vitamin_d_mcg',
                 'category' => 'vitamins',
                 'dv' => '20',
                 'unit' => 'mcg'
             ],
             [
-                'name' => 'vitamin_b12',
+                'name' => 'Vitamin B12',
+                'code' => 'vitamin_b12_mcg',
                 'category' => 'vitamins',
                 'dv' => '2.4',
                 'unit' => 'mcg'
             ],
             [
-                'name' => 'vitamin_e',
+                'name' => 'Vitamin E',
+                'code' => 'vitamin_e_mg',
                 'category' => 'vitamins',
                 'dv' => '15',
                 'unit' => 'mg'
             ],
+            /*
             [
-                'name' => 'vitamin_k',
+                'name' => 'Vitamin K',
+                'code' => 'vitamin_k',
                 'category' => 'vitamins',
                 'dv' => '120',
                 'unit' => 'mcg'
             ],
+            */
             [
-                'name' => 'cholesterol',
+                'name' => 'Cholesterol',
+                'code' => 'cholesterol_mg',
                 'category' => 'macronutrients',
                 'dv' => '300',
                 'unit' => 'mg'
             ],
             [
-                'name' => 'water',
+                'name' => 'Water',
+                'code' => 'water_g',
                 'category' => 'other',
                 'dv' => '100',
                 'unit' => 'g'
