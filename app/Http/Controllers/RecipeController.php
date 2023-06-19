@@ -18,7 +18,7 @@ class RecipeController extends Controller
     public function index()
     {
         // $csrfToken = csrf_token();
-        $recipes = Recipe::with('images', 'likes')->get();
+        $recipes = Recipe::with('images', 'likes', 'user')->get();
 
         return Inertia::render('Recipes/Index', [
             'recipes' => $recipes,

@@ -57,4 +57,11 @@ class Recipe extends Model
         return $this->hasMany(RecipeIngredient::class, 'recipe_id', 'id');
     }
 
+    /**
+     * Get the user that owns the recipe.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

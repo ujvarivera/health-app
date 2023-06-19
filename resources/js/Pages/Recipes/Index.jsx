@@ -4,6 +4,7 @@ import { useState } from 'react';
 import NavLink from '@/Components/NavLink';
 import RecipeList from './Partials/RecipeList';
 import FlashMessage from '@/Components/FlashMessage';
+import Checkbox from '@/Components/Checkbox';
 
 export default function Index({auth, errors, flash, recipes}) {
     /*
@@ -14,6 +15,8 @@ export default function Index({auth, errors, flash, recipes}) {
     const firstRecipeIndex = lastRecipeIndex - recipePerPage;
     const currentRecipes = recipes.slice(firstRecipeIndex, lastRecipeIndex);
     */
+    const [isMine, setIsMine] = useState(false)
+    const myRecipes= recipes?.filter(recipe => recipe.user_id == auth?.user?.id)
 
     return (
         <Layout
@@ -38,10 +41,22 @@ export default function Index({auth, errors, flash, recipes}) {
                                     <NavLink href={route('recipes.create')}>Recipe Upload</NavLink>
                                 }
                             </div>
+
                             {
-                                recipes.length !== 0 ?
+                                auth?.user &&
+                                <label className="flex items-center">
+                                    <Checkbox name="My Recipes" value={isMine} onChange={() => setIsMine(!isMine)}/>
+                                    <span className="ml-2 text-sm text-gray-600">My Recipes</span>
+                                </label>
+                            }
+
+                            {
+                                isMine ? 
+                                <RecipeList recipes={myRecipes} auth={auth}/> :
+
+                                (recipes.length !== 0 ?
                                 <RecipeList recipes={recipes} auth={auth}/> :
-                                <p>There are no recipes yet.</p>
+                                <p>There are no recipes yet.</p>)
                             }
                         </div>
                     </div>
