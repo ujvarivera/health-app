@@ -24,7 +24,7 @@ class RecipeLikesController extends Controller
     public function store(Request $request)
     {
         if (auth()->check()) {
-            RecipeLike::create([
+            RecipeLike::firstOrCreate([
                 'recipe_id' => $request->recipeId,
                 'user_id' => auth()->user()->id,
             ]);

@@ -76,10 +76,10 @@ export default function RecipeCard({ recipe:r, auth }) {
           
                 <p className="inline-block">{ recipe.likes.length }</p>
             </div>
-            {
+            {/*
               auth?.user &&
               <p className={auth?.user?.username == recipe.user.username ? 'text-green-600' : ''}>By: {recipe.user.username}</p>
-            }
+            */}
         </div>
     )
 }
