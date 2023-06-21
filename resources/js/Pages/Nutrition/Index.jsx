@@ -12,18 +12,31 @@ export default function Index({ auth, errors, nutritionList }) {
     const [inputValue, setInputValue] = useState("");
     const [totalNutritions, setTotalNutritions] = useState(nutritionList.length);
 
-    const lastNutritionsIndex = currentPage * nutritionsPerPage;
-    const firstNutritionIndex = lastNutritionsIndex - nutritionsPerPage;
-    // setCurrentNutritions(nutritionList.slice(firstNutritionIndex, lastNutritionsIndex));
+    // const lastNutritionsIndex = currentPage * nutritionsPerPage;
+    // const firstNutritionIndex = lastNutritionsIndex - nutritionsPerPage;
 
     useEffect(() => {
         var currentNutritions = nutritionList.filter((nutrition) =>
             nutrition.name.toLowerCase().includes(inputValue.toLowerCase())
         );
+    
         setTotalNutritions(currentNutritions.length);
-        currentNutritions = currentNutritions.slice(firstNutritionIndex, lastNutritionsIndex)
+        
+        // Calculate the new total number of pages after filtering
+        const totalPages = Math.ceil(currentNutritions.length / nutritionsPerPage);
+        
+        // Check if the current page is beyond the total number of pages
+        if (currentPage > totalPages) {
+            setCurrentPage(1); // Reset to the first page
+        }
+        
+        const lastNutritionsIndex = currentPage * nutritionsPerPage;
+        const firstNutritionIndex = lastNutritionsIndex - nutritionsPerPage;
+    
+        currentNutritions = currentNutritions.slice(firstNutritionIndex, lastNutritionsIndex);
         setCurrentNutritions(currentNutritions);
-    }, [inputValue, currentPage]);
+    
+    }, [inputValue, currentPage, nutritionsPerPage, nutritionList]);
 
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
