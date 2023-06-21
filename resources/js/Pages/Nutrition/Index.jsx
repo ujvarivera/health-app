@@ -10,8 +10,8 @@ export default function Index({ auth, errors, nutritionList }) {
     const [nutritionsPerPage, setNutritionsPerPage] = useState(10);
     const [currentNutritions, setCurrentNutritions] = useState([]);
     const [inputValue, setInputValue] = useState("");
+    const [totalNutritions, setTotalNutritions] = useState(nutritionList.length);
 
-    const totalNutritions = nutritionList.length;
     const lastNutritionsIndex = currentPage * nutritionsPerPage;
     const firstNutritionIndex = lastNutritionsIndex - nutritionsPerPage;
     // setCurrentNutritions(nutritionList.slice(firstNutritionIndex, lastNutritionsIndex));
@@ -20,9 +20,9 @@ export default function Index({ auth, errors, nutritionList }) {
         var currentNutritions = nutritionList.filter((nutrition) =>
             nutrition.name.toLowerCase().includes(inputValue.toLowerCase())
         );
+        setTotalNutritions(currentNutritions.length);
         currentNutritions = currentNutritions.slice(firstNutritionIndex, lastNutritionsIndex)
         setCurrentNutritions(currentNutritions);
-
     }, [inputValue, currentPage]);
 
     const handleInputChange = (event) => {
