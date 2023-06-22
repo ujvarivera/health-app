@@ -67,9 +67,9 @@ export default function Index({ auth, errors, nutritionList }) {
         <Layout
             auth={auth}
             errors={errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Nutritions</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Nutrition</h2>}
         >
-            <Head title="Nutritions" />
+            <Head title="Nutrition" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">

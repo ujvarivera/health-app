@@ -51,7 +51,7 @@ export default function Show({ auth, errors, nutrition, dailyValues }) {
             errors={errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">{nutrition.name}</h2>}
         >
-            <Head title="Exercises" />
+            <Head title="Nutrition" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
