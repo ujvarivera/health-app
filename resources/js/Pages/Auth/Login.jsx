@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Checkbox from '@/Components/Checkbox';
 import Layout from '@/Layouts/Layout';
 import InputError from '@/Components/InputError';
@@ -14,6 +14,10 @@ export default function Login({ status, canResetPassword }) {
         password: '',
         remember: '',
     });
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [hideOrShow, setHideOrShow] = useState('Show');
+    const [inputType, setInputType] = useState('password');
 
     useEffect(() => {
         return () => {
@@ -31,6 +35,17 @@ export default function Login({ status, canResetPassword }) {
         post(route('login'));
     };
 
+    function showPasswordFunc() {
+        setShowPassword(!showPassword);
+        if (showPassword) {
+          setHideOrShow('Show');
+          setInputType('password');
+        } else {
+          setHideOrShow('Hide');
+          setInputType('text');
+        }
+      }
+      
     return (
         <Layout>
             <Head title="Log in" />
@@ -67,17 +82,22 @@ export default function Login({ status, canResetPassword }) {
 
                 <div className="mt-4">
                     <InputLabel htmlFor="password" value="Password" />
-
+                    <div className="relative">
                     <TextInput
                         id="password"
-                        type="password"
+                        type={inputType}
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full pr-10"
                         autoComplete="current-password"
                         onChange={handleOnChange}
                     />
-
+                    <span className="absolute inset-y-0 right-0 flex items-center">
+                        <button type="button" className="text-gray-500 pr-4" onClick={showPasswordFunc}>
+                        {hideOrShow}
+                        </button>
+                    </span>
+                    </div>
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
