@@ -85,23 +85,15 @@ export default function Layout({ auth, header, children }) {
                                         </Dropdown.Content>
                                     </Dropdown>
                                     :
-                                    <>
-                                    <NavLink
-                                        href={route('login')}
-                                        active={route().current('login')}
-                                        className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                    >
-                                        Log in
-                                    </NavLink>
-        
-                                    <NavLink
-                                        href={route('register')}
-                                        active={route().current('register')}
-                                        className="ml-4 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                    >
-                                        Register
-                                    </NavLink>
-                                    </>
+                                    <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                        <NavLink href={route('login')} active={route().current('login')}>
+                                            Log in
+                                        </NavLink>
+            
+                                        <NavLink href={route('register')} active={route().current('register')}>
+                                            Register
+                                        </NavLink>
+                                    </div>
                                 }
                             </div>
                         </div>
