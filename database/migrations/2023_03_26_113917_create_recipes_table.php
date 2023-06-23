@@ -20,7 +20,7 @@ return new class extends Migration
             $table->tinyInteger('difficulty'); // 1 (easy) - 5 (difficult)
             $table->smallInteger('quantity');
             $table->timestamp('created_at')->useCurrent();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

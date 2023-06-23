@@ -19,8 +19,8 @@ return new class extends Migration
             $table->tinyText('note')->nullable(); // 255 characters
             $table->float('cal_burned')->nullable();
             $table->timestamp('created_at')->useCurrent();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('exercise_id')->references('id')->on('exercises');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('exercise_id')->references('id')->on('exercises')->onDelete('cascade');;
         });
     }
 
