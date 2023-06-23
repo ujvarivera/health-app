@@ -44,10 +44,10 @@ class RecipeController extends Controller
             $request->validate([
                 'recipeName' => 'required',
                 'ingredients' => 'required',
-                'description' => 'required|max:255',
+                'description' => 'required',
                 'time' => 'required',
                 'difficulty' => 'required|min:0|max:5',
-                'quantity' => 'required|max:10',
+                'quantity' => 'required|max:20',
                 'images' => 'required' // |mimes:jpeg,jpg,png
             ]);
 

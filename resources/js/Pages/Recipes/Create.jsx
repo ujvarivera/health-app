@@ -5,6 +5,8 @@ import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, useForm } from '@inertiajs/react';
+import ButtonLink from '@/Components/ButtonLink';
+import { BiArrowBack } from 'react-icons/bi';
 
 export default function Index(props) {
 
@@ -48,7 +50,10 @@ export default function Index(props) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
-                            
+                            <ButtonLink href={route('recipes.index')} className='mb-10 text-sm md:text-lg'>
+                                <BiArrowBack />
+                                <span className='ml-1'>Back</span>
+                            </ButtonLink>
                             <form onSubmit={uploadRecipe} encType="multipart/form-data">
                                 <div>
                                     <InputLabel htmlFor="recipeName" value="Recipe Name*" />
@@ -102,8 +107,9 @@ export default function Index(props) {
                                     <InputError message={errors.description} className="mt-2" />
                                 </div>
 
+                                <div class="md:grid md:grid-cols-3 md:gap-3 m-auto">
                                 <div className="mt-4">
-                                    <InputLabel htmlFor="time" value="Time*" />
+                                    <InputLabel htmlFor="time" value="Time (in Minutes)*" />
 
                                     <TextInput
                                         id="time"
@@ -111,11 +117,10 @@ export default function Index(props) {
                                         name="time"
                                         value={data.time}
                                         title="Time is required"
-                                        className="mt-1 inline-block"
+                                        className="mt-1 inline-block w-full"
                                         autoComplete="current-time"
                                         onChange={handleOnChange}
                                     />
-                                    <p className='inline-block'>Minutes</p>
 
                                     <InputError message={errors.time} className="mt-2" />
                                 </div>
@@ -127,11 +132,12 @@ export default function Index(props) {
                                         id="difficulty"
                                         type="number"
                                         min="1"
+                                        step="1"
                                         max="5"
                                         name="difficulty"
                                         value={data.difficulty}
                                         title="Difficulty is required"
-                                        className="mt-1 inline-block"
+                                        className="mt-1 inline-block w-full"
                                         autoComplete="current-difficulty"
                                         onChange={handleOnChange}
                                     />
@@ -146,17 +152,22 @@ export default function Index(props) {
                                         id="quantity"
                                         type="number"
                                         name="quantity"
+                                        min="1"
+                                        step="1"
+                                        max="20"
                                         value={data.quantity}
                                         title="Quantity is required"
-                                        className="mt-1 inline-block"
+                                        className="mt-1 inline-block w-full"
                                         autoComplete="current-quantity"
                                         onChange={handleOnChange}
                                     />
 
                                     <InputError message={errors.quantity} className="mt-2" />
                                 </div>
+                                </div>
 
                                 <div className="mt-4">
+                                    <InputLabel htmlFor="images" value="Image(s)*" />
                                     <TextInput
                                         id="images"
                                         name="images"

@@ -84,6 +84,7 @@ export default function Show({ auth, errors, recipe:r }) {
                                 <BiArrowBack />
                                 <span className='ml-1'>Back</span>
                             </ButtonLink>
+                            <h1 className='text-3xl text-purple-600 font-semibold mb-10 text-center'>{recipe.name}</h1>
                             <Carousel autoPlay={true} infiniteLoop={true}>
                             { recipe.images && recipe.images.map((image, index) => {
                                 return (
@@ -99,7 +100,7 @@ export default function Show({ auth, errors, recipe:r }) {
                             </Carousel>
 
                             <div className='my-6'>
-                                <div className='border border-2 border-purple-600 rounded p-4 mb-4'>
+                                <div className='border-b-2 border-purple-600 rounded p-4 mb-10 md:mb-20'>
                                     <p className='mb-6'>
                                         <div className='font-semibold mr-2 text-2xl text-purple-600'>Description</div>
                                         <div className='text-lg'>{recipe.description}</div>
