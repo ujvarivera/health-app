@@ -1,4 +1,4 @@
-import NavLink from '@/Components/NavLink';
+import ButtonLink from '@/Components/ButtonLink';
 import Layout from '@/Layouts/Layout';
 import { Head, useForm } from '@inertiajs/react';
 import TextInput from '@/Components/TextInput';
@@ -8,6 +8,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import SuccessMessage from '@/Components/SuccessMessage';
+import { BiArrowBack } from 'react-icons/bi';
 
 export default function Show({ auth, errors, nutrition, dailyValues }) {
 
@@ -58,21 +59,29 @@ export default function Show({ auth, errors, nutrition, dailyValues }) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
 
-                            <NavLink href={route('nutrition.index')}>Back</NavLink>
+                            <ButtonLink href={route('nutrition.index')} className='mb-10 text-sm md:text-lg'>
+                                <BiArrowBack />
+                                <span className='ml-1'>Back</span>
+                            </ButtonLink>
 
                             {
                                 showMessage &&
                                 <SuccessMessage message={ successMessage } />
                             }
 
-                            <div className='text-center mb-6'>
-                                <h1 className='text-3xl font-bold text-blue-500'>{nutrition.name}</h1>
+                            <div className="text-center mb-6">
+                                <h1 className="text-3xl font-bold text-purple-600">{nutrition.name}</h1>
+                                <div className="mx-auto w-80 mt-2">
+                                    <h2 className="text-2xl font-bold text-purple-600 bg-purple-500 bg-opacity-20">
+                                        {nutrition.category}
+                                    </h2>
+                                </div>
                             </div>
 
-                            <div className='text-center rounded overflow-hidden shadow-lg'>
+                            <div className='text-center rounded overflow-hidden'>
                                 <h2 className='text-3xl font-bold'>Nutrition Facts</h2>
-                                <p>Serving Size: {(100 * data.quantity).toFixed(2)} grams ({(100 * data.quantity).toFixed(2)} g)</p>
-                                <p className='text-2xl font-bold'>{(nutrition.cal * data.quantity).toFixed(2)} cal</p>
+                                <p className='text-lg'>Serving Size: {(100 * data.quantity).toFixed(2)} grams ({(100 * data.quantity).toFixed(2)} g)</p>
+                                <p className='text-2xl font-bold text-purple-600'>{(nutrition.cal * data.quantity).toFixed(2)} cal</p>
 
                                 <form onSubmit={storeNutrition}>
                                         <div className="mt-4 inline-block">
@@ -108,9 +117,9 @@ export default function Show({ auth, errors, nutrition, dailyValues }) {
                                         const nutrientValue = nutrition[dv.code] * data.quantity;
                                         return (
                                             <tr>
-                                                <td className='px-4 text-left'>{dv.name}</td>
-                                                <td className='px-4 text-right'>{nutrientValue.toFixed(2)} {dv.unit}</td>
-                                                <td className='px-4 text-right'>{Math.round((nutrientValue / dv.dv) * 100)}%</td>
+                                                <td className='px-4 text-left text-lg font-medium'>{dv.name}</td>
+                                                <td className='px-4 text-right text-lg'>{nutrientValue.toFixed(2)} {dv.unit}</td>
+                                                <td className='px-4 text-right text-lg'>{Math.round((nutrientValue / dv.dv) * 100)}%</td>
                                             </tr>
                                         )
                                     }) }

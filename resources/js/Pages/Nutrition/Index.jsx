@@ -1,9 +1,9 @@
 import Layout from '@/Layouts/Layout';
 import { Head } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
-import SecondaryButton from '@/Components/SecondaryButton';
+import PrimaryButton from '@/Components/PrimaryButton';
 import NavLink from "@/Components/NavLink";
-
+import TextInput from '@/Components/TextInput';
 
 export default function Index({ auth, errors, nutritionList }) {
     const [currentPage, setCurrentPage] = useState(1);
@@ -76,20 +76,35 @@ export default function Index({ auth, errors, nutritionList }) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
 
-                            <input type="text" value={inputValue} onChange={handleInputChange} placeholder='Search for nutrition...'/>
+                            <TextInput 
+                                type="text" 
+                                value={inputValue} 
+                                onChange={handleInputChange} 
+                                placeholder='Search for nutrition...'
+                                className="w-full"
+                            />
 
-                            <div className="mt-2 mb-8 inline-block">
-                                <SecondaryButton type="text" onClick={goToFirstPage}>First Page</SecondaryButton>
-                                <SecondaryButton type="text" onClick={decreaseCurrentPage}>Prev</SecondaryButton>
-                                <SecondaryButton type="text" onClick={increaseCurrentPage}>Next</SecondaryButton>
-                                <SecondaryButton type="text" onClick={goToLastPage}>Last Page</SecondaryButton>
+                            <div className="mt-2 mb-8 flex flex-col items-center sm:flex-row sm:justify-center sm:space-x-2">
+                                <PrimaryButton type="text" className="w-48 my-1 sm:w-auto sm:my-0" onClick={goToFirstPage}>
+                                    First Page
+                                </PrimaryButton>
+                                <PrimaryButton type="text" className="w-48 mx-2 my-1 sm:w-auto sm:my-0" onClick={decreaseCurrentPage}>
+                                    Prev
+                                </PrimaryButton>
+                                <PrimaryButton type="text" className="w-48 mx-2 my-1 sm:w-auto sm:my-0" onClick={increaseCurrentPage}>
+                                    Next
+                                </PrimaryButton>
+                                <PrimaryButton type="text" className="w-48 mx-2 my-1 sm:w-auto sm:my-0" onClick={goToLastPage}>
+                                    Last Page
+                                </PrimaryButton>
+                                <p className="font-medium text-lg text-purple-600">Page {currentPage}.</p>
                             </div>
-                            <p className="inline-block ml-2">Page {currentPage}.</p>
+
                             { currentNutritions.map((nutrition, index) => {
                                 return (
                                     <div className='block' key={nutrition.id}>
-                                        <NavLink href={route('nutrition.show', nutrition)}>
-                                            <h1 className="text-center">{nutrition.name}</h1>
+                                        <NavLink href={route('nutrition.show', nutrition)} className='pb-2 mb-4 font-semibold'>
+                                            <h1 className="text-left">{nutrition.name}</h1>
                                         </NavLink>
                                     </div>
                                 )
