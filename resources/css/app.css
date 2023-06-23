@@ -24,3 +24,7 @@
     width: 5%;
     height: 50px;
 }
+
+.carousel .thumb.selected, .carousel .thumb:hover {
+    border: 3px solid #9333ea !important;
+}

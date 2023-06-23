@@ -5,6 +5,7 @@ import NavLink from '@/Components/NavLink';
 import RecipeList from './Partials/RecipeList';
 import FlashMessage from '@/Components/FlashMessage';
 import Checkbox from '@/Components/Checkbox';
+import ButtonLink from '@/Components/ButtonLink';
 
 export default function Index({auth, errors, flash, recipes}) {
     /*
@@ -38,16 +39,19 @@ export default function Index({auth, errors, flash, recipes}) {
                             <div className="mt-2 mb-8 inline-block">
                                 {
                                     auth.user &&
-                                    <NavLink href={route('recipes.create')}>Recipe Upload</NavLink>
+                                    <ButtonLink href={route('recipes.create')} className='text-sm md:text-lg'>Recipe Upload</ButtonLink>
                                 }
                             </div>
 
                             {
                                 auth?.user &&
-                                <label className="flex items-center">
-                                    <Checkbox name="My Recipes" value={isMine} onChange={() => setIsMine(!isMine)}/>
-                                    <span className="ml-2 text-sm text-gray-600">My Recipes</span>
-                                </label>
+                                <div className="flex items-center">
+                                    <span className='inline-block mr-2'>Filter:</span>
+                                    <label className="flex items-center inline-block">
+                                        <Checkbox name="My Recipes" value={isMine} onChange={() => setIsMine(!isMine)}/>
+                                        <span className="ml-2 text-sm text-gray-600 cursor-pointer">My Recipes</span>
+                                    </label>
+                                </div>
                             }
 
                             {

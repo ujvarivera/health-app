@@ -100,7 +100,7 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel htmlFor="password" value="Password (8+ characters)" />
 
                     <TextInput
                         id="password"
@@ -109,6 +109,7 @@ export default function Register() {
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="new-password"
+                        /*placeholder="8+ characters"*/
                         onChange={handleOnChange}
                         required
                     />

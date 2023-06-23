@@ -10,6 +10,8 @@ import InputError from '@/Components/InputError';
 import TextInput from '@/Components/TextInput';
 import PrimaryButton from '@/Components/PrimaryButton';
 import { MdDeleteForever } from 'react-icons/md';
+import ButtonLink from '@/Components/ButtonLink';
+import { BiArrowBack } from 'react-icons/bi';
 
 export default function Show({ auth, errors, recipe:r }) {
 
@@ -78,7 +80,10 @@ export default function Show({ auth, errors, recipe:r }) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
-                            <NavLink href={route('recipes.index')}>Back</NavLink>
+                            <ButtonLink href={route('recipes.index')} className='mb-10 text-sm md:text-lg'>
+                                <BiArrowBack />
+                                <span className='ml-1'>Back</span>
+                            </ButtonLink>
                             <Carousel autoPlay={true} infiniteLoop={true}>
                             { recipe.images && recipe.images.map((image, index) => {
                                 return (
@@ -94,19 +99,36 @@ export default function Show({ auth, errors, recipe:r }) {
                             </Carousel>
 
                             <div className='my-6'>
-                                <p className='my-2'>description: {recipe.description}</p>
-                                <p className='my-2'>difficulty: {recipe.difficulty}</p>
-                                <p className='my-2'>time in min: {recipe.time_in_min}</p>
-                                <p className='my-2'>quantity: for {recipe.quantity} person</p>
-                                <p className='my-2'>ingredients:</p>
-                                <ul>
-                                    { recipe.ingredients && recipe.ingredients.map((ingredient, index) => {
-                                        return (
-                                            <li key={ingredient.id} className='pl-6'>{ingredient.ingredient}</li>
-                                        )
-                                    }) }
-                                </ul>
+                                <div className='border border-2 border-purple-600 rounded p-4 mb-4'>
+                                    <p className='mb-6'>
+                                        <div className='font-semibold mr-2 text-2xl text-purple-600'>Description</div>
+                                        <div className='text-lg'>{recipe.description}</div>
+                                    </p>
+                                    <p className='my-6'>
+                                        <div className='font-semibold mr-2 text-2xl text-purple-600'>Difficulty</div>
+                                        <div className='text-lg'>{recipe.difficulty}</div>
+                                    </p>
+                                    <p className='my-6'>
+                                        <div className='font-semibold mr-2 text-2xl text-purple-600'>Time (min)</div>
+                                        <div className='text-lg'>{recipe.time_in_min}</div>
+                                    </p>
+                                    <p className='my-6'>
+                                        <div className='font-semibold mr-2 text-2xl text-purple-600'>Quantity</div>
+                                        <div className='text-lg'>For {recipe.quantity} person(s)</div>
+                                    </p>
+                                    <p className='mt-6 font-semibold text-2xl text-purple-600'>Ingredients</p>
+                                        {recipe.ingredients &&
+                                            recipe.ingredients.map((ingredient, index) => {
+                                                return (
+                                                <div key={ingredient.id} className='text-lg'>
+                                                    {ingredient.ingredient}
+                                                </div>
+                                                );
+                                            })
+                                        }
+                                </div>
                             </div>
+
 
                             {
                                 auth?.user ? 
@@ -129,7 +151,7 @@ export default function Show({ auth, errors, recipe:r }) {
                                             <InputError message={err.comment} className="mt-2" />
                                         </div>
                                         <div className="flex items-center justify-end mt-4">
-                                            <PrimaryButton className="ml-4" disabled={processing}>
+                                            <PrimaryButton className="ml-4 mb-10" disabled={processing}>
                                             Send
                                             </PrimaryButton>
                                         </div>
@@ -159,7 +181,10 @@ export default function Show({ auth, errors, recipe:r }) {
                                     </div>
                                 </>
                                 :
-                                <p className='text-red-400'>You need to be logged in to see the comments.</p>
+                                <p className='text-red-400 text-lg'>
+                                    <span className='font-medium'>You need to be logged in to see the comments.</span>
+                                    <NavLink href={route('login')} className='ml-4 text-red-400'>Go to the log in page. &rarr;</NavLink>
+                                </p>
                             }
 
                         </div>

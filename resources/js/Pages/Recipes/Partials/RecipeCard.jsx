@@ -65,9 +65,6 @@ export default function RecipeCard({ recipe:r, auth }) {
 
     return (
         <div className="my-10">
-            <img src={'/storage/' + recipe.images[0]?.image} alt={recipe.name} className='w-80 h-40'/>
-            <NavLink href={route('recipes.show', recipe)} className="inline-block float-left mt-10"><h1 className="text-center">{recipe.name}</h1></NavLink>
-            
             <Modal show={showUnauthenticatedMessage} onClose={() => setShowUnauthenticatedMessage(false)}>
                     <div className='m-4'>
                     <h2 className="text-2xl font-medium text-red-500">
@@ -76,23 +73,30 @@ export default function RecipeCard({ recipe:r, auth }) {
 
                     <p className="mt-1 text-lg text-gray-600">
                        You need to be logged in to like the recipes. 
-                       <NavLink href={route('login')}>Go to the log in page. &rarr;</NavLink>
+                       <NavLink href={route('login')} className='ml-4'>Go to the log in page. &rarr;</NavLink>
                     </p>
                     </div>
             </Modal>
 
-            <div className='inline-block float-right'>
+            <img src={'/storage/' + recipe.images[0]?.image} alt={recipe.name} className='w-80 h-40'/>
+            
+            <div className="flex items-center">
+              <NavLink href={route('recipes.show', recipe)} className="flex items-center">
+                <h1 className="text-center text-purple-600 font-semibold">{recipe.name}</h1>
+              </NavLink>
+
+              <div className="ml-auto flex items-center">
                 <form onSubmit={likedByUser ? dislikeRecipe : likeRecipe} className="inline-block">
-                  <button>
-                    {
-                      likedByUser ? <FcLike size={70} /> : <FcLikePlaceholder size={70} />
-                    }
-                            
+                  <button className="focus:outline-none">
+                    {likedByUser ? <FcLike size={40} /> : <FcLikePlaceholder size={40} />}
                   </button>
-                  </form>
-          
-                <p className="inline-block">{ recipe.likes.length }</p>
+                </form>
+
+                <p className="inline-block ml-2">{recipe.likes.length}</p>
+              </div>
             </div>
+
+
             {/*
               auth?.user &&
               <p className={auth?.user?.username == recipe.user.username ? 'text-green-600' : ''}>By: {recipe.user.username}</p>
