@@ -43,7 +43,6 @@ export default function Index({ auth, errors, exercises }) {
         <Layout
             auth={auth}
             errors={errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Exercises</h2>}
         >
             <Head title="Exercises" />
 

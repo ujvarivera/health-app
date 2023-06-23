@@ -72,7 +72,6 @@ export default function Show({ auth, errors, recipe:r }) {
         <Layout
             auth={auth}
             errors={errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Recipe: {recipe.name}</h2>}
         >
             <Head title="Recipes" />
 

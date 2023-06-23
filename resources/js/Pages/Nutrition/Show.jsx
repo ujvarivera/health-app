@@ -50,7 +50,6 @@ export default function Show({ auth, errors, nutrition, dailyValues }) {
         <Layout
             auth={auth}
             errors={errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">{nutrition.name}</h2>}
         >
             <Head title="Nutrition" />
 

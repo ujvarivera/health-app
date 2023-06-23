@@ -67,7 +67,6 @@ export default function Index({ auth, errors, nutritionList }) {
         <Layout
             auth={auth}
             errors={errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Nutrition</h2>}
         >
             <Head title="Nutrition" />
 

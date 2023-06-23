@@ -29,7 +29,6 @@ export default function Index({auth, errors, userMeasurements, measurementTypes}
         <Layout
             auth={auth}
             errors={errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">My measurements</h2>}
         >
             <Head title="Measurements" />
 
