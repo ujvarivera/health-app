@@ -9,6 +9,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import SuccessMessage from '@/Components/SuccessMessage';
 import { BiArrowBack } from 'react-icons/bi';
+import Modal from '@/Components/Modal';
+import NavLink from '@/Components/NavLink';
 
 export default function Show({ auth, errors, nutrition, dailyValues }) {
 
@@ -19,6 +21,7 @@ export default function Show({ auth, errors, nutrition, dailyValues }) {
     const myCaloriesUrl = '/calories';
     const [successMessage, setSuccessMessage] = useState('');
     const [showMessage, setShowMessage] = useState(false);
+    const [showUnauthenticatedMessage, setShowUnauthenticatedMessage] = useState(false);
 
     function storeNutrition(e) {
         e.preventDefault();
@@ -36,7 +39,7 @@ export default function Show({ auth, errors, nutrition, dailyValues }) {
             setTimeout(() => setShowMessage(false), 3000);
           })
           .catch(error => {
-            setError('quantity', error.response.data.message);
+            setShowUnauthenticatedMessage(true);
           });
 
         setData('quantity', 1);
@@ -62,7 +65,18 @@ export default function Show({ auth, errors, nutrition, dailyValues }) {
                                 <BiArrowBack />
                                 <span className='ml-1'>Back</span>
                             </ButtonLink>
+                            <Modal show={showUnauthenticatedMessage} onClose={() => setShowUnauthenticatedMessage(false)}>
+                                <div className='m-4'>
+                                    <h2 className="text-2xl font-medium text-red-500">
+                                        Unauthenticated.
+                                    </h2>
 
+                                    <p className="mt-1 text-lg text-gray-600">
+                                    You need to be logged in to add meals to your food diary. 
+                                    </p>
+                                    <NavLink href={route('login')} className='mt-2 hover:text-purple-600'>Go to the log in page. &rarr;</NavLink>
+                                </div>
+                            </Modal>
                             {
                                 showMessage &&
                                 <SuccessMessage message={ successMessage } />
@@ -97,7 +111,6 @@ export default function Show({ auth, errors, nutrition, dailyValues }) {
                                                 onChange={handleOnChange}
                                             />
 
-                                            <InputError message={err.quantity} className="mt-2" />
                                         </div>
                                         <div className="mt-4 inline-block">
                                             <PrimaryButton className="ml-4" disabled={processing}>

@@ -2,8 +2,7 @@ import Layout from '@/Layouts/Layout';
 import { Head } from '@inertiajs/react';
 import { useState } from 'react';
 import ExerciseList from './Partials/ExerciseList';
-import SecondaryButton from '@/Components/SecondaryButton';
-
+import PrimaryButton from '@/Components/PrimaryButton';
 
 export default function Index({ auth, errors, exercises }) {
     const [currentPage, setCurrentPage] = useState(1);
@@ -50,13 +49,13 @@ export default function Index({ auth, errors, exercises }) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
-                            <div className="mt-2 mb-8 inline-block">
-                                <SecondaryButton type="text" onClick={goToFirstPage}>First Page</SecondaryButton>
-                                <SecondaryButton type="text" onClick={decreaseCurrentPage}>Prev</SecondaryButton>
-                                <SecondaryButton type="text" onClick={increaseCurrentPage}>Next</SecondaryButton>
-                                <SecondaryButton type="text" onClick={goToLastPage}>Last Page</SecondaryButton>
+                            <div className="mt-2 mb-8 flex flex-col items-center sm:flex-row sm:justify-center sm:space-x-2">
+                                <PrimaryButton type="text" onClick={goToFirstPage} className="w-48 my-1 sm:w-auto sm:my-0">First Page</PrimaryButton>
+                                <PrimaryButton type="text" onClick={decreaseCurrentPage} className="w-48 mx-2 my-1 sm:w-auto sm:my-0">Prev</PrimaryButton>
+                                <PrimaryButton type="text" onClick={increaseCurrentPage} className="w-48 mx-2 my-1 sm:w-auto sm:my-0">Next</PrimaryButton>
+                                <PrimaryButton type="text" onClick={goToLastPage} className="w-48 mx-2 my-1 sm:w-auto sm:my-0">Last Page</PrimaryButton>
+                                <p className="font-medium text-lg text-purple-600">Page {currentPage}.</p>
                             </div>
-                            <p className="inline-block ml-2">Page {currentPage}.</p>
                             <ExerciseList currentExercises={currentExercises}/>
                         </div>
                     </div>

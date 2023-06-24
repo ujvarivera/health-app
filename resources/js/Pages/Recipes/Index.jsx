@@ -59,7 +59,7 @@ export default function Index({auth, errors, flash, recipes}) {
 
                                 (recipes.length !== 0 ?
                                 <RecipeList recipes={recipes} auth={auth}/> :
-                                <p>There are no recipes yet.</p>)
+                                <p className='text-2xl text-purple-600 font-bold mt-10'>There are no recipes yet.</p>)
                             }
                         </div>
                     </div>
