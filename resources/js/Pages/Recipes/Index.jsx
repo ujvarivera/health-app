@@ -38,7 +38,7 @@ export default function Index({auth, errors, flash, recipes}) {
                             <div className="mt-2 mb-8 inline-block">
                                 {
                                     auth.user &&
-                                    <ButtonLink href={route('recipes.create')} className='text-sm md:text-lg'>Recipe Upload</ButtonLink>
+                                    <ButtonLink href={route('recipes.create')} className='text-sm md:text-lg'>+ New Recipe</ButtonLink>
                                 }
                             </div>
 

@@ -3,14 +3,13 @@ import Layout from '@/Layouts/Layout';
 import { Head, useForm } from '@inertiajs/react';
 import NavLink from '@/Components/NavLink';
 import PrimaryButton from '@/Components/PrimaryButton';
-import SecondaryButton from '@/Components/SecondaryButton';
-
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css"; 
 
 import { BsCheck } from 'react-icons/bs';
+import ButtonLink from '@/Components/ButtonLink';
 
 export default function Index({auth, errors, userGoals}) {
 
@@ -59,35 +58,17 @@ export default function Index({auth, errors, userGoals}) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
 
-                        <NavLink href={route('goals.create')}>
-                            Add New Goal
-                        </NavLink>
+                        <ButtonLink href={route('goals.create')}>
+                            + Add New Goal
+                        </ButtonLink>
 
-                        <div className='block my-4'>
-                            <SecondaryButton type="text" onClick={() => setSelectedGoals(userGoals)}>All Goals</SecondaryButton>
-                            <SecondaryButton type="text" onClick={showCompleted}>Completed Goals</SecondaryButton>
-                            <SecondaryButton type="text" onClick={showNotCompleted}>Not Completed Goals</SecondaryButton>
+                        <img src="/goals.jpg" alt="logo" className="md:w-2/4 m-auto my-10"/>
+
+                        <div className='mt-2 mb-8 flex flex-col items-center sm:flex-row sm:justify-center sm:space-x-2'>
+                            <PrimaryButton type="text" onClick={() => setSelectedGoals(userGoals)} className="w-48 my-1 sm:w-auto sm:my-0">All</PrimaryButton>
+                            <PrimaryButton type="text" onClick={showCompleted} className="w-48 mx-2 my-1 sm:w-auto sm:my-0">Completed</PrimaryButton>
+                            <PrimaryButton type="text" onClick={showNotCompleted} className="w-48 mx-2 my-1 sm:w-auto sm:my-0">Not Completed</PrimaryButton>
                         </div>
-
-                        {/* selectedGoals && selectedGoals.map((goal) => {
-                            return (
-                                <div key={goal.id} className='mt-4'>
-                                    <p>Goal value: {goal.value}</p>
-                                    <p>Name of the goal: {goal.name}</p>
-                                    <p>Measurement name: {goal.measurement_type_name.name}</p>
-                                    <p>Unit: {goal.measurement_type_name.unit}</p>
-                                    <p>Created at: {goal.created_at}</p>
-                                    {
-                                        goal.completed_at ?
-                                        <p className='text-green-600'>Completed at {goal.completed_at}</p> :
-                                        <form onSubmit={(event) => onSubmit(event, goal)}>
-                                            <PrimaryButton>Mark as completed</PrimaryButton>
-                                        </form>
-                                    }
-                                </div>      
-                            )
-                            }) 
-                        */}
 
                         <DataTable value={selectedGoals} sortField="created_at" sortOrder={-1} removableSort showGridlines paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
                             <Column field="name" sortable header="Goal Name"></Column>

@@ -40,7 +40,7 @@ export default function Index({auth, errors, userMeasurements, measurementTypes}
 
                         <div className='mb-4'>
                             <ButtonLink href={route('measurements.create')}>
-                                Add New Measurement
+                                + Add New Measurement
                             </ButtonLink>
                         </div>
 

@@ -27,7 +27,6 @@ class UserGoalController extends Controller
         // Validation
         $request->validate([
             'measurementTypeId' => 'required',
-            'goalName' => 'required',
             'goalValue' => 'required',
         ]);
 

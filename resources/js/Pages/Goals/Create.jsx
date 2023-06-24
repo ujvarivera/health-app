@@ -6,6 +6,8 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import { useState, useEffect } from 'react';
+import ButtonLink from '@/Components/ButtonLink';
+import { BiArrowBack } from 'react-icons/bi';
 
 export default function Index({auth, errors, measurementTypes}) {
 
@@ -44,9 +46,10 @@ export default function Index({auth, errors, measurementTypes}) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
 
-                            <NavLink href={route('goals.index')}>
-                                Back To My Goals
-                            </NavLink>
+                            <ButtonLink href={route('goals.index')} className='mb-10'>
+                                <BiArrowBack />
+                                <span className='ml-1'>Back</span>
+                            </ButtonLink>
 
                             <div className='mt-4'>
                                     <InputLabel htmlFor="goalName" value="Goal Name (Optional)" />
@@ -75,6 +78,7 @@ export default function Index({auth, errors, measurementTypes}) {
                                         id="measurementType"
                                         value={data.measurementType}
                                         onChange={(e) => setData('measurementTypeId', e.target.value)}
+                                        className="block w-full px-4 py-2 text-gray-700 bg-white border border-purple-300 rounded-md focus:outline-none focus:border-purple-500"
                                     >
                                     { measurementTypes && measurementTypes.map((measurement, index) => {
                                         return (
@@ -94,7 +98,7 @@ export default function Index({auth, errors, measurementTypes}) {
                                 </div>
 
                                 <div className='mt-4'>
-                                    <InputLabel htmlFor="goalValue" value="Goal Value*" />
+                                    <InputLabel htmlFor="goalValue" value={"Goal Value ("+measurementUnit+")*"} />
 
                                     <TextInput
                                         id="goalValue"
@@ -102,7 +106,7 @@ export default function Index({auth, errors, measurementTypes}) {
                                         step="0.1"
                                         name="goalValue"
                                         value={data.goalValue}
-                                        placeholder="Type in your goal value..."
+                                        placeholder={" Type in your goal value..."}
                                         className="mt-1 block w-full"
                                         isFocused={true}
                                         onChange={handleOnChange}
@@ -111,8 +115,6 @@ export default function Index({auth, errors, measurementTypes}) {
                                     <InputError message={errors.goalValue} className="mt-2" />
 
                                 </div>
-
-                                <p>{measurementUnit}</p>
 
                                 <div className="flex items-center justify-end mt-4">
                                     <PrimaryButton className="ml-4" disabled={processing}>
