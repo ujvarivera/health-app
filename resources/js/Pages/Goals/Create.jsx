@@ -49,7 +49,7 @@ export default function Index({auth, errors, measurementTypes}) {
                             </NavLink>
 
                             <div className='mt-4'>
-                                    <InputLabel htmlFor="goalName" value="Goal Name*" />
+                                    <InputLabel htmlFor="goalName" value="Goal Name (Optional)" />
 
                                     <TextInput
                                         id="goalName"
