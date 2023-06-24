@@ -70,8 +70,8 @@ export default function Show({ auth, errors, nutrition, dailyValues }) {
 
                             <div className="text-center mb-6">
                                 <h1 className="text-3xl font-bold text-purple-600">{nutrition.name}</h1>
-                                <div className="mx-auto w-80 mt-2">
-                                    <h2 className="text-2xl font-bold text-purple-600 bg-purple-500 bg-opacity-20">
+                                <div className="mx-auto md:w-80 mt-2">
+                                    <h2 className="text-2xl font-bold text-purple-600 bg-gray-400 bg-opacity-30">
                                         {nutrition.category}
                                     </h2>
                                 </div>
@@ -106,23 +106,25 @@ export default function Show({ auth, errors, nutrition, dailyValues }) {
                                         </div>
                                 </form>
 
-                                <table class="mx-auto mt-8 border-separate border-spacing-2 border border-slate-400">
-                                    <tr className='font-bold pl-40'>
-                                        <td></td>
-                                        <td></td>
-                                        <td>% Daily Value</td>
-                                    </tr>
-                                    { dailyValues.map((dv, index) => {
-                                        const nutrientValue = nutrition[dv.code] * data.quantity;
-                                        return (
-                                            <tr>
-                                                <td className='px-4 text-left text-lg font-medium'>{dv.name}</td>
-                                                <td className='px-4 text-right text-lg'>{nutrientValue.toFixed(2)} {dv.unit}</td>
-                                                <td className='px-4 text-right text-lg'>{Math.round((nutrientValue / dv.dv) * 100)}%</td>
-                                            </tr>
-                                        )
-                                    }) }
-                                </table>
+                                <div className="mx-auto overflow-x-auto">
+                                    <table class="mx-auto mt-8 border-separate border-spacing-2 border border-purple-600">
+                                        <tr className='font-bold text-purple-600'>
+                                            <td></td>
+                                            <td></td>
+                                            <td>% Daily Value</td>
+                                        </tr>
+                                        { dailyValues.map((dv, index) => {
+                                            const nutrientValue = nutrition[dv.code] * data.quantity;
+                                            return (
+                                                <tr>
+                                                    <td className='px-4 text-left text-lg font-bold text-purple-600'>{dv.name}</td>
+                                                    <td className='px-4 text-right text-lg'>{nutrientValue.toFixed(2)} {dv.unit}</td>
+                                                    <td className='px-4 text-right text-lg'>{Math.round((nutrientValue / dv.dv) * 100)}%</td>
+                                                </tr>
+                                            )
+                                        }) }
+                                    </table>
+                                </div>
                             </div>
 
                         </div>

@@ -19,10 +19,35 @@ class MeasurementTypeSeeder extends Seeder
                 'unit' => 'kg'
             ],
             [
-                'name' => 'height',
+                'name' => 'hips',
+                'unit' => 'cm'
+            ],
+            [
+                'name' => 'waist',
+                'unit' => 'cm'
+            ],
+            [
+                'name' => 'chest / bust',
+                'unit' => 'cm'
+            ],
+            [
+                'name' => 'upper arm',
+                'unit' => 'cm'
+            ],
+            [
+                'name' => 'thigh',
+                'unit' => 'cm'
+            ],
+            [
+                'name' => 'abdomen',
                 'unit' => 'cm'
             ],
             /*
+            [
+                'name' => 'height',
+                'unit' => 'cm'
+            ],
+            
             [
                 'name' => 'body mass index (BMI)',
                 'unit' => NULL
@@ -33,10 +58,6 @@ class MeasurementTypeSeeder extends Seeder
                 'unit' => NULL
             ],
             */
-            [
-                'name' => 'hip area',
-                'unit' => 'cm'
-            ]
         ]);
     }
 }

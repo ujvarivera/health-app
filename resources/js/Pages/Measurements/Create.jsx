@@ -5,10 +5,12 @@ import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
+import ButtonLink from '@/Components/ButtonLink';
+import { BiArrowBack } from 'react-icons/bi';
 // import { useRef } from 'react';
 import { useState, useEffect } from 'react';
 
-export default function Index({auth, errors, measurementTypes}) {
+export default function Create({auth, errors, measurementTypes}) {
 
     const { data, setData, post, processing, errors:err, reset, delete:destroy } = useForm({
         measurementValue: '',
@@ -45,58 +47,64 @@ export default function Index({auth, errors, measurementTypes}) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
 
-                            <NavLink href={route('measurements.index')}>
-                                Back To My Measurements
-                            </NavLink>
+                            <ButtonLink href={route('measurements.index')} className='mb-10'>
+                                <BiArrowBack />
+                                <span className='ml-1'>Back</span>
+                            </ButtonLink>
+
+                            <img src="/measurement.png" alt="Measurement Types" className="m-auto" />
 
                             <form onSubmit={addMeasurement} className='mt-4'>
-                                <div>
-                                    <InputLabel htmlFor="measurementType" value="Measurement Type*" />
+                                <div className='md:grid md:grid-cols-2 md:gap-2 m-auto'>
+
+                                    <div className='mt-2'>
+                                        <InputLabel htmlFor="measurementType" value="Measurement Type*" />
+                                    
+                                        <select 
+                                            name="measurementType" 
+                                            id="measurementType"
+                                            value={data.measurementType}
+                                            onChange={(e) => setData('measurementType', e.target.value)}
+                                            // ref={selectRef}
+                                            className="block w-full px-4 py-2 text-gray-700 bg-white border border-purple-300 rounded-md focus:outline-none focus:border-purple-500"
+                                        >
+                                        { measurementTypes && measurementTypes.map((measurement, index) => {
+                                            return (
+                                                <>
+                                                    <option 
+                                                        key={measurement.id}
+                                                        value={measurement.id}
+                                                        className='pl-6'
+                                                    >
+                                                        {measurement.name}
+                                                    </option>
+                                                </>
+                                            )
+                                            }) 
+                                        }
+                                        </select>
+                                    </div>
+
+                                    <div className='mt-2'>
+                                        <InputLabel htmlFor="measurementValue" value="Measurement Value*" />
+
+                                        <TextInput
+                                            id="measurementValue"
+                                            type="number"
+                                            step="0.1"
+                                            name="measurementValue"
+                                            value={data.measurementValue}
+                                            placeholder={"Type your value in " + measurementUnit}
+                                            className="block w-full"
+                                            title="Measurement value is required"
+                                            isFocused={true}
+                                            onChange={handleOnChange}
+                                        />
+                                        <InputError message={errors.measurementValue} className="mt-2" />
+
+                                    </div>
+                                </div>
                                 
-                                    <select 
-                                        name="measurementType" 
-                                        id="measurementType"
-                                        value={data.measurementType}
-                                        onChange={(e) => setData('measurementType', e.target.value)}
-                                        // ref={selectRef}
-                                    >
-                                    { measurementTypes && measurementTypes.map((measurement, index) => {
-                                        return (
-                                            <>
-                                                <option 
-                                                    key={measurement.id}
-                                                    value={measurement.id}
-                                                    className='pl-6'
-                                                >
-                                                    {measurement.name}
-                                                </option>
-                                            </>
-                                        )
-                                        }) 
-                                    }
-                                    </select>
-                                </div>
-
-                                <div className='mt-4'>
-                                    <InputLabel htmlFor="measurementValue" value="Measurement Value*" />
-
-                                    <TextInput
-                                        id="measurementValue"
-                                        type="number"
-                                        step="0.1"
-                                        name="measurementValue"
-                                        value={data.measurementValue}
-                                        placeholder="Type in your measurement value..."
-                                        className="mt-1 block w-full"
-                                        isFocused={true}
-                                        onChange={handleOnChange}
-                                    />
-
-                                    <InputError message={errors.measurementValue} className="mt-2" />
-
-                                </div>
-                                <p>{measurementUnit}</p>
-
                                 <div className="flex items-center justify-end mt-4">
                                     <PrimaryButton className="ml-4" disabled={processing}>
                                         Add

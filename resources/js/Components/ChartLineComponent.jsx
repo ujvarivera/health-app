@@ -18,8 +18,8 @@ export default function ChartLineComponent({ labels, labelName, data, title }) {
         datasets: [{
           label: labelName,
           data: data,
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
-          borderColor: 'rgba(255, 99, 132, 0.5)',
+          backgroundColor: '#9333ea',
+          borderColor: '#9333ea',
           borderWidth: 1
         }]
       };

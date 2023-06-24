@@ -28,3 +28,6 @@
 .carousel .thumb.selected, .carousel .thumb:hover {
     border: 3px solid #9333ea !important;
 }
+.p-datatable .p-sortable-column.p-highlight {
+    color: #9333ea !important;
+}

@@ -160,6 +160,7 @@ class NutritionDailyValueSeeder extends Seeder
                 'dv' => '300',
                 'unit' => 'mg'
             ],
+            /*
             [
                 'name' => 'Water',
                 'code' => 'water_g',
@@ -167,6 +168,7 @@ class NutritionDailyValueSeeder extends Seeder
                 'dv' => '100',
                 'unit' => 'g'
             ],
+            */
         ]);
     }
 }
