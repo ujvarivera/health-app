@@ -16,7 +16,7 @@ class BmiRangeSeeder extends Seeder
         DB::table('bmi_ranges')->insert([
             [
                 'status' => 'Underweight',
-                'lower' => NULL,
+                'lower' => 0,
                 'upper' => 18.5,
                 'classes' => 'text-blue-500'
             ],
@@ -47,7 +47,7 @@ class BmiRangeSeeder extends Seeder
             [
                 'status' => 'Obesity (Class III.)',
                 'lower' => 40,
-                'upper' => NULL,
+                'upper' => 99,
                 'classes' => 'text-red-500'
             ],
         ]);
