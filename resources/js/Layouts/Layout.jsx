@@ -21,12 +21,6 @@ export default function Layout({ auth, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                {
-                                    auth?.user &&
-                                    <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                        Dashboard
-                                    </NavLink>
-                                }
                                 <NavLink href={route('nutrition.index')} active={route().current('nutrition.*')}>
                                     Nutrition
                                 </NavLink>
@@ -126,12 +120,6 @@ export default function Layout({ auth, header, children }) {
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        {
-                            auth &&
-                            <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                Dashboard
-                            </ResponsiveNavLink>
-                        }
                         <ResponsiveNavLink href={route('nutrition.index')} active={route().current('nutrition.*')}>
                             Nutrition
                         </ResponsiveNavLink>
