@@ -93,7 +93,7 @@ export default function Login({ status, canResetPassword }) {
                         onChange={handleOnChange}
                     />
                     <span className="absolute inset-y-0 right-0 flex items-center">
-                        <button type="button" className="text-gray-500 pr-4" onClick={showPasswordFunc}>
+                        <button type="button" className="text-purple-500 pr-4" onClick={showPasswordFunc}>
                         {hideOrShow}
                         </button>
                     </span>
