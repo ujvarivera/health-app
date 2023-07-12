@@ -13,11 +13,16 @@ class ExerciseController extends Controller
      */
     public function index()
     {
+        if (auth()->check()) {
+            $preference = auth()->user()->preferences->where('class', 'exercise')->first();
+            $recommendedExercises = Exercise::where($preference->prop, $preference->value)->inRandomOrder()->limit(5)->get();
+        } else {
+            $recommendedExercises = Exercise::inRandomOrder()->limit(5)->get();
+        }
+
         $exercises = Exercise::all();
         // dd($exercises);
-        return Inertia::render('Exercises/Index', [
-            'exercises' => $exercises
-        ]);
+        return Inertia::render('Exercises/Index', compact('exercises', 'recommendedExercises'));
     }
 
     /**

@@ -58,4 +58,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserGoal::class, 'user_id', 'id');
     }
+
+    /**
+     * Get the preferences of the user.
+    */
+    public function preferences()
+    {
+        return $this->hasMany(UserPreference::class, 'user_id', 'id');
+    }
+
 }
