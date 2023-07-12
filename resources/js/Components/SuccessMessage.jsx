@@ -1,4 +1,4 @@
-export default function FlashMessage({ message }) {
+export default function SuccessMessage({ message }) {
     return (
             <div class="bg-green-100 rounded-md p-3 flex">
                 <svg

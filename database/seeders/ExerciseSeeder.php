@@ -15,8 +15,8 @@ class ExerciseSeeder extends Seeder
     public function run(): void
     {
         $response = Http::withHeaders([
-            'X-RapidAPI-Key' => env('RAPID_API_KEY'),
-            'X-RapidAPI-Host' => env('RAPID_API_HOST')
+            'X-RapidAPI-Key' => env('RAPID_API_EXERCISEDB_KEY'),
+            'X-RapidAPI-Host' => env('RAPID_API_EXERCISEDB_HOST')
         ])->get('https://exercisedb.p.rapidapi.com/exercises');
     
         $exercises = $response->json();

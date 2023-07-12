@@ -71,7 +71,9 @@ export default function Index({auth, errors, userMeasurements, measurementTypes}
                         <ChartLineComponent labelName={labelName} labels={labels} data={chartData} title='Measurements'/>
 
                         <h2 className='text-2xl mb-6 mt-20 ml-1 text-purple-600 font-bold'>All measurements</h2>
-                        <DataTable value={userMeasurements} footer={footer} sortField="created_at" sortOrder={-1} removableSort  /*sortMode="multiple"*/ showGridlines paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
+                        <DataTable value={userMeasurements} footer={footer} sortField="created_at" sortOrder={-1} 
+                            removableSort showGridlines paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} 
+                            tableStyle={{ minWidth: '50rem' }}>
                             <Column field="measurement_type_name.name" sortable header="Measurement Type Name"></Column>
                             <Column field="value" sortable header="Value"></Column>
                             <Column field="measurement_type_name.unit" sortable header="Unit"></Column>
