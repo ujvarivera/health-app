@@ -20,7 +20,8 @@ class ExerciseController extends Controller
             $recommendedExercises = Exercise::inRandomOrder()->limit(5)->get();
         }
 
-        $exercises = Exercise::all();
+        $filters = request(['body_part', 'target', 'equipment']);
+        $exercises = Exercise::filter($filters)->get();
         // dd($exercises);
         return Inertia::render('Exercises/Index', compact('exercises', 'recommendedExercises'));
     }
