@@ -48,7 +48,7 @@ class RecipeController extends Controller
                 'time' => 'required',
                 'difficulty' => 'required|min:0|max:5',
                 'quantity' => 'required|max:20',
-                'images' => 'required' // |mimes:jpeg,jpg,png
+                'images' => '' // |mimes:jpeg,jpg,png
             ]);
 
             // Create the recipe
@@ -62,12 +62,14 @@ class RecipeController extends Controller
             ]);
 
             // Add images
-            foreach ($request->images as $img) {
-                $storedPath = Storage::disk('public')->put('recipes', $img);
-                RecipeImage::create([
-                    'recipe_id' => $recipe->id,
-                    'image' => $storedPath // image path
-                ]);
+            if (!empty($request->images)) {
+                foreach ($request->images as $img) {
+                    $storedPath = Storage::disk('public')->put('recipes', $img);
+                    RecipeImage::create([
+                        'recipe_id' => $recipe->id,
+                        'image' => $storedPath // image path
+                    ]);
+                }
             }
 
             // Add ingredients

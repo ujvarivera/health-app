@@ -1,7 +1,7 @@
 export default function FlashMessage({ message }) {
     return (
         <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)">
-            <div class="bg-green-100 rounded-md p-3 fixed bottom-3 right-3">
+            <div className="bg-green-100 rounded-md p-3 fixed bottom-3 right-3">
                 {/*
                 <svg
                     class="stroke-2 stroke-current text-green-600 h-8 w-8 mr-2 flex-shrink-0"

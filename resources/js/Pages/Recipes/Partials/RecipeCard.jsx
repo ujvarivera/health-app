@@ -23,9 +23,10 @@ export default function RecipeCard({ recipe: r, auth }) {
         showUnauthenticatedMessage={showUnauthenticatedMessage}
         setShowUnauthenticatedMessage={setShowUnauthenticatedMessage}
       />
-
-      <img src={'/storage/' + recipe.images[0]?.image} alt={recipe.name} className='w-80 h-40' />
-
+      {recipe.images.length > 0 ?
+        <img src={'/storage/' + recipe.images[0]?.image} alt={recipe.name} className='w-80 h-40' /> :
+        <img src='/meal_not_found.jpg' alt="Image Not Found" className='w-80 h-40' />
+      }
       <div className="flex items-center">
         <NavLink href={route('recipes.show', recipe)} className="flex items-center text-center text-purple-600 font-semibold">
           {recipe.name}

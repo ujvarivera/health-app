@@ -103,7 +103,7 @@ export default function CreateRecipeForm(props) {
             </div>
 
             <div className="mt-4">
-                <InputLabel htmlFor="images" value="Image(s)*" />
+                <InputLabel htmlFor="images" value="Image(s)" />
                 <TextInput
                     id="images"
                     name="images"
