@@ -2,6 +2,7 @@ import { Head } from '@inertiajs/react';
 import Layout from '@/Layouts/Layout';
 import CreateRecipeForm from './Partials/CreateRecipeForm';
 import BackButton from '@/Components/BackButton';
+import Container from '@/Components/Container';
 
 export default function Index(props) {
 
