@@ -84,7 +84,7 @@ export default function Layout({ auth, header, children }) {
                                             Log in
                                         </NavLink>
             
-                                        <NavLink href={route('register')} active={route().current('register')}>
+                                        <NavLink href={route('register')} active={route().current('register')} className='bg-purple-700 text-white hover:text-white rounded'>
                                             Register
                                         </NavLink>
                                     </div>

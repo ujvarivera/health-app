@@ -10,7 +10,7 @@ export default function AuthenticateModal({ showUnauthenticatedMessage, setShowU
                     Unauthenticated.
                 </h2>
 
-                <AuthenticateText>You need to be logged in to like the recipes.</AuthenticateText>
+                <AuthenticateText>You need to be logged in for this action.</AuthenticateText>
             </div>
         </Modal>
     )
