@@ -26,12 +26,12 @@ export default function Index({ auth, errors, flash, recipes }) {
                     <FlashMessage message={flash.success} />
                 }
 
-                <div className="mt-2 mb-8 inline-block">
-                    {
-                        auth.user &&
-                        <ButtonLink href={route('recipes.create')}>+ New Recipe</ButtonLink>
-                    }
-                </div>
+                {
+                    auth.user &&
+                    <ButtonLink href={route('recipes.create')} className="mt-2 mb-8 inline-block">
+                        + New Recipe
+                    </ButtonLink>
+                }
 
                 {
                     auth?.user &&
