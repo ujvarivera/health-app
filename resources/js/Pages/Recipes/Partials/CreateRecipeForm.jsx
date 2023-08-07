@@ -3,6 +3,7 @@ import InputLabel from '@/Components/InputLabel';
 import InputError from '@/Components/InputError';
 import TextInput from '@/Components/TextInput';
 import PrimaryButton from '@/Components/PrimaryButton';
+import FormInput from '@/Components/Forms/FormInput';
 
 export default function CreateRecipeForm(props) {
 
@@ -33,115 +34,72 @@ export default function CreateRecipeForm(props) {
 
     return (
         <form onSubmit={uploadRecipe} encType="multipart/form-data">
-            <div>
-                <InputLabel htmlFor="recipeName" value="Recipe Name*" />
+            <FormInput 
+                inputName="recipeName" 
+                inputValue={data.recipeName} 
+                labelName="Recipe Name*" 
+                handleOnChange={handleOnChange} 
+                error={errors.recipeName}
+                title="Recipe Name is required"
+                isFocused
+            />
+            
+            <FormInput 
+                inputName="description" 
+                inputValue={data.description} 
+                labelName="Description*" 
+                handleOnChange={handleOnChange} 
+                error={errors.description}
+                title="Description is required"
+            />
+            
+            <FormInput 
+                inputName="ingredients" 
+                inputValue={data.ingredients} 
+                labelName="Ingredients*" 
+                handleOnChange={handleOnChange}
+                error={errors.ingredients}
+                placeholder="3/4 cup flour, 1/2 teaspoon salt"
+                title="Ingredients are required"
+            />
 
-                <TextInput
-                    id="recipeName"
-                    type="text"
-                    name="recipeName"
-                    value={data.recipeName}
-                    title="Recipe name is required"
-                    className="mt-1 block w-full"
-                    isFocused={true}
-                    onChange={handleOnChange}
-                />
 
-                <InputError message={errors.recipeName} className="mt-2" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel htmlFor="ingredients" value="Ingredients*" />
-
-                <TextInput
-                    id="ingredients"
-                    type="text"
-                    name="ingredients"
-                    value={data.ingredients}
-                    placeholder="3/4 cup flour, 1/2 teaspoon salt"
-                    title="Ingredients are required"
-                    className="mt-1 block w-full"
-                    isFocused={true}
-                    onChange={handleOnChange}
-                />
-
-                <InputError message={errors.recipeName} className="mt-2" />
-            </div>
-
-            <div className="mt-4">
-                <InputLabel htmlFor="description" value="Description*" />
-
-                <TextInput
-                    id="description"
-                    type="text"
-                    name="description"
-                    value={data.description}
-                    title="Description is required"
-                    className="mt-1 block w-full"
-                    autoComplete="current-description"
-                    onChange={handleOnChange}
-                />
-
-                <InputError message={errors.description} className="mt-2" />
-            </div>
-
-            <div class="md:grid md:grid-cols-3 md:gap-3 m-auto">
-            <div className="mt-4">
-                <InputLabel htmlFor="time" value="Time (in Minutes)*" />
-
-                <TextInput
-                    id="time"
-                    type="number"
-                    name="time"
-                    value={data.time}
+            <div className="md:grid md:grid-cols-3 md:gap-3 m-auto">
+                <FormInput 
+                    inputName="time" 
+                    inputValue={data.time} 
+                    inputType="number"
+                    labelName="Time*" 
+                    handleOnChange={handleOnChange}
+                    error={errors.time}
                     title="Time is required"
-                    className="mt-1 inline-block w-full"
-                    autoComplete="current-time"
-                    onChange={handleOnChange}
                 />
 
-                <InputError message={errors.time} className="mt-2" />
-            </div>
-
-            <div className="mt-4">
-                <InputLabel htmlFor="difficulty" value="Difficulty*" />
-
-                <TextInput
-                    id="difficulty"
-                    type="number"
+                <FormInput 
+                    inputName="difficulty" 
+                    inputValue={data.difficulty} 
+                    inputType="number"
+                    labelName="Difficulty*"
+                    handleOnChange={handleOnChange}
+                    error={errors.difficulty}
                     min="1"
                     step="1"
                     max="5"
-                    name="difficulty"
-                    value={data.difficulty}
                     title="Difficulty is required"
-                    className="mt-1 inline-block w-full"
-                    autoComplete="current-difficulty"
-                    onChange={handleOnChange}
                 />
 
-                <InputError message={errors.difficulty} className="mt-2" />
-            </div>
-
-            <div className="mt-4">
-                <InputLabel htmlFor="quantity" value="Quantity*" />
-
-                <TextInput
-                    id="quantity"
-                    type="number"
-                    name="quantity"
+                <FormInput 
+                    inputName="quantity" 
+                    inputValue={data.quantity} 
+                    inputType="number"
+                    labelName="Quantity*"
+                    handleOnChange={handleOnChange}
+                    error={errors.quantity}
                     min="1"
                     step="1"
                     max="20"
-                    value={data.quantity}
                     title="Quantity is required"
-                    className="mt-1 inline-block w-full"
-                    autoComplete="current-quantity"
-                    onChange={handleOnChange}
                 />
-
-                <InputError message={errors.quantity} className="mt-2" />
-            </div>
             </div>
 
             <div className="mt-4">
