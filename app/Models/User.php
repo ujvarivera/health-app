@@ -52,6 +52,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the consumptions of the user.
+     */
+    public function consumptions()
+    {
+        return $this->hasMany(UserConsumption::class, 'user_id', 'id');
+    }
+
+    /**
      * Get the goals of the user.
     */
     public function goals()

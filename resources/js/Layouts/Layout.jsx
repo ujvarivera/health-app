@@ -21,14 +21,8 @@ export default function Layout({ auth, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('nutrition.index')} active={route().current('nutrition.*')}>
-                                    Nutrition
-                                </NavLink>
                                 <NavLink href={route('recipes.index')} active={route().current('recipes.*')}>
                                     Recipes
-                                </NavLink>
-                                <NavLink href={route('exercises.index')} active={route().current('exercises.*')}>
-                                    Exercises
                                 </NavLink>
                                 <NavLink href={route('measurements.index')} active={route().current('measurements.*')}>
                                     Measurements
@@ -39,6 +33,75 @@ export default function Layout({ auth, header, children }) {
                                 <NavLink href={route('calculators.index')} active={route().current('calculators.*')}>
                                     Calculators
                                 </NavLink>
+
+                                <div className="hidden sm:flex sm:items-center sm:ml-6">
+                                    <div className="relative">
+                                        <Dropdown>
+                                            <Dropdown.Trigger>
+                                                <span className="inline-flex rounded-md">
+                                                    <button
+                                                        type="button"
+                                                        className="inline-flex items-center py-2 border border-transparent text-lg leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                                    >
+                                                        Nutrition
+
+                                                        <svg
+                                                            className="ml-2 -mr-0.5 h-4 w-4"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 20 20"
+                                                            fill="currentColor"
+                                                        >
+                                                            <path
+                                                                fillRule="evenodd"
+                                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                                clipRule="evenodd"
+                                                            />
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            </Dropdown.Trigger>
+
+                                            <Dropdown.Content>
+                                                <Dropdown.Link href={route('calories.index')} className='text-xl'>My Diary</Dropdown.Link>
+                                                <Dropdown.Link href={route('nutrition.index')} className='text-xl'>Nutrition</Dropdown.Link>
+                                            </Dropdown.Content>
+                                        </Dropdown>
+                                    </div>
+                                </div>
+                                <div className="hidden sm:flex sm:items-center sm:ml-6">
+                                    <div className="relative">
+                                        <Dropdown>
+                                            <Dropdown.Trigger>
+                                                <span className="inline-flex rounded-md">
+                                                    <button
+                                                        type="button"
+                                                        className="inline-flex items-center py-2 border border-transparent text-lg leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                                    >
+                                                        Exercises
+
+                                                        <svg
+                                                            className="ml-2 -mr-0.5 h-4 w-4"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 20 20"
+                                                            fill="currentColor"
+                                                        >
+                                                            <path
+                                                                fillRule="evenodd"
+                                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                                clipRule="evenodd"
+                                                            />
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            </Dropdown.Trigger>
+
+                                            <Dropdown.Content>
+                                                <Dropdown.Link href={route('exercises.index')} className='text-xl'>My Exercises</Dropdown.Link>
+                                                <Dropdown.Link href={route('exercises.index')} className='text-xl'>Exercises</Dropdown.Link>
+                                            </Dropdown.Content>
+                                        </Dropdown>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -46,48 +109,48 @@ export default function Layout({ auth, header, children }) {
                             <div className="ml-3 relative">
                                 {
                                     auth?.user ?
-                                    <Dropdown>
-                                        <Dropdown.Trigger>
-                                            <span className="inline-flex rounded-md">
-                                                <button
-                                                    type="button"
-                                                    className="inline-flex items-center px-3 py-2 border border-transparent text-xl leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
-                                                >
-                                                    {auth?.user && auth?.user?.name}
-
-                                                    <svg
-                                                        className="ml-2 -mr-0.5 h-4 w-4"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 20 20"
-                                                        fill="currentColor"
+                                        <Dropdown>
+                                            <Dropdown.Trigger>
+                                                <span className="inline-flex rounded-md">
+                                                    <button
+                                                        type="button"
+                                                        className="inline-flex items-center px-3 py-2 border border-transparent text-xl leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                                     >
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                            clipRule="evenodd"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                            </span>
-                                        </Dropdown.Trigger>
+                                                        {auth?.user && auth?.user?.name}
 
-                                        <Dropdown.Content>
-                                            <Dropdown.Link href={route('profile.edit')} className='text-xl'>Profile</Dropdown.Link>
-                                            <Dropdown.Link href={route('logout')} method="post" as="button" className='text-xl'>
-                                                Log Out
-                                            </Dropdown.Link>
-                                        </Dropdown.Content>
-                                    </Dropdown>
-                                    :
-                                    <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                        <NavLink href={route('login')} active={route().current('login')}>
-                                            Log in
-                                        </NavLink>
-            
-                                        <NavLink href={route('register')} active={route().current('register')} className='bg-purple-700 text-white hover:text-white rounded'>
-                                            Register
-                                        </NavLink>
-                                    </div>
+                                                        <svg
+                                                            className="ml-2 -mr-0.5 h-4 w-4"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 20 20"
+                                                            fill="currentColor"
+                                                        >
+                                                            <path
+                                                                fillRule="evenodd"
+                                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                                clipRule="evenodd"
+                                                            />
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            </Dropdown.Trigger>
+
+                                            <Dropdown.Content>
+                                                <Dropdown.Link href={route('profile.edit')} className='text-xl'>Profile</Dropdown.Link>
+                                                <Dropdown.Link href={route('logout')} method="post" as="button" className='text-xl'>
+                                                    Log Out
+                                                </Dropdown.Link>
+                                            </Dropdown.Content>
+                                        </Dropdown>
+                                        :
+                                        <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                            <NavLink href={route('login')} active={route().current('login')}>
+                                                Log in
+                                            </NavLink>
+
+                                            <NavLink href={route('register')} active={route().current('register')} className='bg-purple-700 text-white hover:text-white rounded'>
+                                                Register
+                                            </NavLink>
+                                        </div>
                                 }
                             </div>
                         </div>
@@ -123,8 +186,14 @@ export default function Layout({ auth, header, children }) {
                         <ResponsiveNavLink href={route('nutrition.index')} active={route().current('nutrition.*')}>
                             Nutrition
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('calories.index')} active={route().current('calories.index')}>
+                            My Nutrition Diary
+                        </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('recipes.index')} active={route().current('recipes.*')}>
                             Recipes
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('exercises.index')} active={route().current('exercises.*')}>
+                            My Exercises
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('exercises.index')} active={route().current('exercises.*')}>
                             Exercises
@@ -142,32 +211,32 @@ export default function Layout({ auth, header, children }) {
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
                         {
-                           auth?.user ?
-                            <>
-                                <div className="px-4">
-                                    <div className="font-medium text-base text-gray-800">
-                                        {auth?.user && auth?.user?.name}
+                            auth?.user ?
+                                <>
+                                    <div className="px-4">
+                                        <div className="font-medium text-base text-gray-800">
+                                            {auth?.user && auth?.user?.name}
+                                        </div>
+                                        <div className="font-medium text-sm text-gray-500">{auth?.user && auth?.user?.email}</div>
                                     </div>
-                                    <div className="font-medium text-sm text-gray-500">{auth?.user && auth?.user?.email}</div>
-                                </div>
 
-                                <div className="mt-3 space-y-1">
-                                    <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
-                                    <ResponsiveNavLink method="post" href={route('logout')} as="button">
-                                        Log Out
+                                    <div className="mt-3 space-y-1">
+                                        <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
+                                        <ResponsiveNavLink method="post" href={route('logout')} as="button">
+                                            Log Out
+                                        </ResponsiveNavLink>
+                                    </div>
+                                </>
+                                :
+                                <>
+                                    <ResponsiveNavLink href={route('login')}>
+                                        Log in
                                     </ResponsiveNavLink>
-                                </div>
-                            </>
-                            :
-                            <>
-                                <ResponsiveNavLink href={route('login')}>
-                                    Log in
-                                </ResponsiveNavLink>
 
-                                <ResponsiveNavLink href={route('register')}>
-                                    Register
-                                </ResponsiveNavLink>
-                            </>
+                                    <ResponsiveNavLink href={route('register')}>
+                                        Register
+                                    </ResponsiveNavLink>
+                                </>
                         }
                     </div>
                 </div>

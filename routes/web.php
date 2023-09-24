@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/goals/{goal}', [UserGoalController::class, 'update'])->name('goals.update');
 
     Route::post('/calories', [UserConsumptionController::class, 'store'])->name('calories.post');
-
+    Route::get('/calories', [UserConsumptionController::class, 'index'])->name('calories.index');
 });
 
 Route::resource('/nutrition', NutritionController::class)->only(['index', 'show']);

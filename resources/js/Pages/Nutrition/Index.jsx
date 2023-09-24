@@ -92,8 +92,11 @@ export default function Index({ auth, errors, nutritionList }) {
                     </PrimaryButton>
                     <p className="font-medium text-lg text-purple-600">Page {currentPage}.</p>
                 </div>
-
-               <NutritionList currentNutritions={currentNutritions}/>
+                {
+                    currentNutritions.length > 0 ?
+                    <NutritionList currentNutritions={currentNutritions}/> :
+                    <p className='text-xl font-medium'>Not found.</p>
+                }
             </Container>
         </Layout>
     );

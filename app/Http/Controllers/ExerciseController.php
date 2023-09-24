@@ -14,8 +14,13 @@ class ExerciseController extends Controller
     public function index()
     {
         if (auth()->check()) {
-            $preference = auth()->user()->preferences->where('class', 'exercise')->first();
-            $recommendedExercises = Exercise::where($preference->prop, $preference->value)->inRandomOrder()->limit(5)->get();
+            try {
+                $preference = auth()->user()->preferences->where('class', 'exercise')->first();
+                $recommendedExercises = Exercise::where($preference->prop, $preference->value)->inRandomOrder()->limit(5)->get();
+            } catch (\Exception $e) {
+                $recommendedExercises = Exercise::inRandomOrder()->limit(5)->get();
+            }
+
         } else {
             $recommendedExercises = Exercise::inRandomOrder()->limit(5)->get();
         }
