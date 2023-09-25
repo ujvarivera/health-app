@@ -75,4 +75,12 @@ class User extends Authenticatable
         return $this->hasMany(UserPreference::class, 'user_id', 'id');
     }
 
+    /**
+     * Get the  exercises of the user.
+    */
+    public function exercises()
+    {
+        //
+    }
+
 }

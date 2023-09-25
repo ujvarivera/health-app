@@ -20,6 +20,7 @@ class ExerciseUser extends Model
         'duration_in_min',
         'note',
         'cal_burned',
+        'created_at'
     ];
 
     public $timestamps = false;
@@ -29,7 +30,14 @@ class ExerciseUser extends Model
      *
      * @var array<string, string>
      */
+    /*
     protected $casts = [
         'created_at' => 'datetime',
     ];
+    */
+
+    public function exercise()
+    {
+        return $this->belongsTo(Exercise::class);
+    }
 }

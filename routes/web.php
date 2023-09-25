@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/recipe/like', [RecipeLikesController::class, 'store'])->name('recipe.like');
     Route::delete('/recipe/likes/{id}', [RecipeLikesController::class, 'destroy'])->name('recipe.dislike');
 
-    Route::resource('my-exercises', ExerciseUserController::class)->only(['store']);
+    Route::resource('my-exercises', ExerciseUserController::class)->only(['index', 'store']);
     Route::resource('/measurements', UserMeasurementController::class)->only('index', 'create', 'store');
 
     Route::get('/goals', [UserGoalController::class, 'index'])->name('goals.index');

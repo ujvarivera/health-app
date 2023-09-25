@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ExerciseUser;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ExerciseUserController extends Controller
 {
@@ -12,7 +13,15 @@ class ExerciseUserController extends Controller
      */
     public function index()
     {
-        //
+        $myExercises = ExerciseUser::where('user_id', auth()->user()->id)
+                        ->orderBy('created_at', 'desc')
+                        ->with('exercise')
+                        ->get();
+        $dates = $myExercises->unique('created_at')->pluck('created_at');
+        //dd(json_decode($myExercises));
+        $today = Carbon::now()->format("Y-m-d");
+
+        return inertia('Exercises/MyExercises', compact('myExercises', 'dates', 'today'));
     }
 
     /**
@@ -42,6 +51,7 @@ class ExerciseUserController extends Controller
             'duration_in_min' => $request->get('durationInMin'),
             'note' => $request->get('note') !== "" ? $request->get('note') : NULL,
             'cal_burned' => $request->get('calBurned') !== "" ? $request->get('calBurned') : NULL,
+            'created_at' => Carbon::now(),
         ]);
 
         return redirect()->route('exercises.index');
