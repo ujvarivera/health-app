@@ -72,7 +72,7 @@ export default function MyExercises({ auth, errors, myExercises, dates, today })
                     }
                 </select>
 
-                <div className='text-2xl my-10'>
+                <div className='text-xl my-10'>
                     <h2 className='mb-2 text-purple-600 font-bold'>Summary</h2>
                     <p>Total Calory Burned: {calBurned}</p>
                     <p>Total Minutes: {totalLength}</p>

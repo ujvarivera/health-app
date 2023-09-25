@@ -13,7 +13,7 @@ class UserConsumptionController extends Controller
         // $consumptions = auth()->user()->consumptions->groupBy('created_at');
         // $consumptions = auth()->user()->consumptions->sortByDesc('created_at');
         $consumptions = UserConsumption::where('user_id', auth()->user()->id)->with('nutrition')->orderBy('created_at', 'desc')->get();
-        $dates = $consumptions->pluck('created_at');
+        $dates = $consumptions->unique('created_at')->pluck('created_at');
         //dd(json_decode($consumptions));
         // dd($dates);
         return inertia('Consumption/Index', compact('consumptions', 'dates'));

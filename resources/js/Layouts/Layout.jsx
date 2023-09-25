@@ -52,7 +52,7 @@ export default function Layout({ auth, header, children }) {
                                             </Dropdown.Trigger>
 
                                             <Dropdown.Content>
-                                                <Dropdown.Link href={route('calories.index')} className='text-xl'>Food Diary</Dropdown.Link>
+                                                <Dropdown.Link href={route('calories.index')} className='text-xl'>Consumptions</Dropdown.Link>
                                                 <Dropdown.Link href={route('nutrition.index')} className='text-xl'>Calorie Chart</Dropdown.Link>
                                             </Dropdown.Content>
                                         </Dropdown>
@@ -86,7 +86,7 @@ export default function Layout({ auth, header, children }) {
                                             </Dropdown.Trigger>
 
                                             <Dropdown.Content>
-                                                <Dropdown.Link href={route('measurements.index')} className='text-xl'>My Measurements</Dropdown.Link>
+                                                <Dropdown.Link href={route('measurements.index')} className='text-xl'>Body Parameters</Dropdown.Link>
                                                 <Dropdown.Link href={route('goals.index')} className='text-xl'>My Goals</Dropdown.Link>
                                             </Dropdown.Content>
                                         </Dropdown>
