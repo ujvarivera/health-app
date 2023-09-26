@@ -24,7 +24,7 @@ export default function MyExercises({ auth, errors, myExercises, dates, today })
         setSelectedDate(date)
         setCurrentExercises(() => (myExercises.filter(exercise => exercise.created_at == date)))
         currentExercises.map((exercise) => {
-          calBurned += Number(exercise.cal_burned);
+            calBurned += Number(exercise.cal_burned);
         });
     }
 
@@ -74,8 +74,8 @@ export default function MyExercises({ auth, errors, myExercises, dates, today })
 
                 <div className='text-xl my-10'>
                     <h2 className='mb-2 text-purple-600 font-bold'>Summary</h2>
-                    <p>Total Calory Burned: {calBurned}</p>
-                    <p>Total Minutes: {totalLength}</p>
+                    <p>Total Calory Burned: <span className='text-purple-600 font-bold'>{calBurned} cal</span></p>
+                    <p>Total Minutes: <span className='text-purple-600 font-bold'>{totalLength} min</span></p>
                 </div>
 
                 <DataTable value={currentExercises} sortField="created_at" sortOrder={-1}

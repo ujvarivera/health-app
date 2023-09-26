@@ -11,6 +11,7 @@ use App\Http\Controllers\RecipeLikesController;
 use App\Http\Controllers\UserConsumptionController;
 use App\Http\Controllers\UserGoalController;
 use App\Http\Controllers\UserMeasurementController;
+use App\Http\Controllers\UserPreferenceController;
 use App\Models\UserConsumption;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,10 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('my-exercises', ExerciseUserController::class)->only(['index', 'store']);
     Route::resource('/measurements', UserMeasurementController::class)->only('index', 'create', 'store');
+
+    Route::get('/recommendations', [UserPreferenceController::class, 'edit'])->name('recommendation.edit');
+    Route::post('/recommendations', [UserPreferenceController::class, 'store'])->name('recommendation.store');
+    Route::delete('/recommendations/{recommendation}', [UserPreferenceController::class, 'destroy'])->name('recommendation.destroy');
 
     Route::get('/goals', [UserGoalController::class, 'index'])->name('goals.index');
     Route::get('/goals/create', [UserGoalController::class, 'create'])->name('goals.create');

@@ -41,7 +41,7 @@ export default function NutritionIntakeForm({ nutrition, data, setData, processi
                     id="quantity"
                     type="number"
                     min="1"
-                    step="0.1"
+                    step="0.5"
                     max="10"
                     name="quantity"
                     value={data.quantity}
@@ -54,7 +54,7 @@ export default function NutritionIntakeForm({ nutrition, data, setData, processi
             </div>
             <div className="mt-4 inline-block">
                 <PrimaryButton className="ml-4" disabled={processing}>
-                    I ate it
+                    Add
                 </PrimaryButton>
             </div>
         </form>

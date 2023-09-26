@@ -47,7 +47,6 @@ export default function Index({ auth, errors, consumptions, dates }) {
             <div className="p-3">
                 <h5 className='font-bold'>Details for {data.nutrition.name} (100 g):</h5>
                 <div className='ml-4'>
-                    <div>Category: {data.nutrition.category}</div>
                     <div>Cal: {data.nutrition.cal} cal</div>
                     <div>Fat: {data.nutrition.fat_g} g</div>
                     <div>Saturated Fat: {data.nutrition.saturated_fat_g} g</div>
@@ -97,7 +96,7 @@ export default function Index({ auth, errors, consumptions, dates }) {
 
                 <div className='text-xl my-10'>
                     <h2 className='mb-2 text-purple-600 font-bold'>Summary</h2>
-                    <p>Total Calory Intake: {totalCal}</p>
+                    <p>Total Calory Intake: <span className='text-purple-600 font-bold'>{totalCal} cal</span></p>
                 </div>
 
                 <DataTable value={currentConsumptions} sortField="created_at" sortOrder={-1}

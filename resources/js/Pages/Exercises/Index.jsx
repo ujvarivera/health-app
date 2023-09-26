@@ -44,7 +44,7 @@ export default function Index({ auth, errors, exercises, recommendedExercises })
             <Head title="Exercises" />
 
             <Container>
-                <RecommendedExercisesList recommendedExercises={recommendedExercises}/>
+                <RecommendedExercisesList recommendedExercises={recommendedExercises} auth={auth}/>
 
                 <div className="mt-2 mb-8 flex flex-col items-center sm:flex-row sm:justify-center sm:space-x-2">
                     <PrimaryButton type="text" onClick={goToFirstPage} className="w-48 my-1 sm:w-auto sm:my-0">First Page</PrimaryButton>
