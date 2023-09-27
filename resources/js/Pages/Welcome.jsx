@@ -10,7 +10,7 @@ export default function Welcome(props) {
         >
             <Head title="Homepage" />
             <>
-                <Hero />
+                <Hero auth={props.auth}/>
             </>
 
         </Layout>

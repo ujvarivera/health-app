@@ -1,6 +1,6 @@
 import ButtonLink from "./ButtonLink";
 
-export default function Hero() {
+export default function Hero({ auth }) {
   return (
     <div className="relative text-white min-h-screen">
       <div className="absolute inset-0">
@@ -15,8 +15,15 @@ export default function Hero() {
             Discover the benefits of a healthy lifestyle.
           </p>
           <div className="flex justify-center">
-            <ButtonLink href={route('login')} className="w-40 mx-2 flex flex-col items-center">LOGIN</ButtonLink>
-            <ButtonLink href={route('register')} className="w-40 flex flex-col items-center">REGISTER</ButtonLink>
+            {
+              !auth.user ?
+              <>
+                <ButtonLink href={route('login')} className="w-40 mx-2 flex flex-col items-center">LOGIN</ButtonLink>
+                <ButtonLink href={route('register')} className="w-40 flex flex-col items-center">REGISTER</ButtonLink>
+              </> :
+              <ButtonLink href={route('profile.edit')} className="w-40 flex flex-col items-center">PROFILE</ButtonLink>
+
+            }
           </div>
         </div>
       </div>
