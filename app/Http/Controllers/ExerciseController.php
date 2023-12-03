@@ -18,14 +18,20 @@ class ExerciseController extends Controller
                 $preferences = auth()->user()->preferences->where('class', 'exercise');
                 //$preference = auth()->user()->preferences->where('class', 'exercise')->first();
                 $length = count($preferences);
-                $random = random_int(0, $length-1);
-
-                $recommendedExercises = [];
-                $recommendedExercises = Exercise::where(
-                    $preferences[$random]->prop, $preferences[$random]->value
-                )->inRandomOrder()->limit(5)->get();
+                if ($length > 0 ) {
+                    $random = random_int(0, $length-1);
+    
+                    $recommendedExercises = [];
+                    $recommendedExercises = Exercise::where(
+                        $preferences[$random]->prop, $preferences[$random]->value
+                    )->inRandomOrder()->limit(5)->get();
+                } else {
+                    // random 5 exercises
+                    $recommendedExercises = Exercise::inRandomOrder()->limit(5)->get();
+                }
         
             } catch (\Exception $e) {
+                // random 5 exercises
                 $recommendedExercises = Exercise::inRandomOrder()->limit(5)->get();
             }
 
