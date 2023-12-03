@@ -29,7 +29,9 @@ class RecipeLikesController extends Controller
                 'user_id' => auth()->user()->id,
             ]);
 
-            $recipe = Recipe::where('id', $request->recipeId)->with('images', 'likes')->first();
+            $recipe = Recipe::where('id', $request->recipeId)
+                                ->with('images', 'likes')
+                                ->first();
 
             return response()->json($recipe);
         }

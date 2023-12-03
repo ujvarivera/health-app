@@ -9,10 +9,10 @@ export default function Hero({ auth }) {
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-white bg-opacity-70 text-purple-700 p-4 shadow-m">
-            Welcome to Our Healthy Website
+            Welcome to Healthily
           </h1>
-          <p className="text-lg font-bold mb-8 bg-white bg-opacity-70 text-purple-700 p-4 shadow-m">
-            Discover the benefits of a healthy lifestyle.
+          <p className="text-2xl font-bold mb-8 bg-white bg-opacity-70 text-purple-700 p-4 shadow-m">
+            Live your life Healthily.
           </p>
           <div className="flex justify-center">
             {

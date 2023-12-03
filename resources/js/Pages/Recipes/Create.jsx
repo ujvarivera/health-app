@@ -4,7 +4,7 @@ import CreateRecipeForm from './Partials/CreateRecipeForm';
 import BackButton from '@/Components/BackButton';
 import Container from '@/Components/Container';
 
-export default function Index(props) {
+export default function Create(props) {
 
     return (
         <Layout
