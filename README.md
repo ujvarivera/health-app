@@ -12,6 +12,45 @@ The result of my thesis is a web application written with Laravel framework and 
 - React.js
 - Inertia.js
 
+## Presenting the application
+
+### Welcome Page
+![Welcome Page](public/pics/welcome.jpg)
+
+### Register Form
+![Register Form](public/pics/register.jpg)
+
+### Recipes
+![Recipes](public/pics/recipes.png)
+
+### Recipe Detailed Page
+![Recipe](public/pics/recipe.png)
+
+![Recipe Comments](public/pics/recipe_comments.png)
+
+### Nutrition Detailed & Calories Page
+![Nutrition Detailed](public/pics/nutrition_calory.jpg)
+
+### Consumptions / Intake Nutrition Log
+![Consumptions](public/pics/consumptions.png)
+
+### Exercises
+![Exercises](public/pics/exercises.png)
+
+### Exercises / Workout Log
+![Workout Log](public/pics/workout_log.png)
+
+### Measurements
+![Measurements Chart](public/pics/measurements1.png)
+
+![Measurements DataTable](public/pics/measurements2.png)
+
+### Goals
+![Goals](public/pics/goals.png)
+
+### BMI Calculator
+![BMI Calculator](public/pics/bmi_calculator.jpg)
+
 ## How to run the application
 
 1. PHP 8.1+ and MySQL must be installed. It's easiest if you download a development environment, like [Laragon](https://laragon.org/download/index.html).
